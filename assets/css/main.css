@@ -1,0 +1,16 @@
+body {
+  background-color: var(--surface-ground);
+  color: var(--text-color);
+}
+.splide__pagination {
+  counter-reset: pagination-num;
+}
+
+.splide__pagination__page {
+  height: auto;
+}
+
+.splide__pagination__page:before {
+  counter-increment: pagination-num;
+  content: counter( pagination-num );
+}

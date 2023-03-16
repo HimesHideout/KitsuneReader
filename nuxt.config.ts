@@ -11,7 +11,9 @@ export default defineNuxtConfig({
         "normalize.css/normalize.css",
         "primevue/resources/themes/vela-orange/theme.css",
         "primevue/resources/primevue.css",
-        "primeicons/primeicons.css"
+        "primeicons/primeicons.css",
+        "@splidejs/splide/css/sea-green",
+        "@/assets/css/main.css"
     ],
     build: {
         transpile: ["primevue"]
