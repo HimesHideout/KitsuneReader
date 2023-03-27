@@ -1,8 +1,8 @@
 <script setup></script>
 
 <template>
-  <div>
-    <NuxtWelcome />
+  <div class="flex items-center justify-center h-screen">
+      <NuxtLink to="/page"><Button label="Reader page" /></NuxtLink>
   </div>
 </template>
 
