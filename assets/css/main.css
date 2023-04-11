@@ -2,6 +2,12 @@ body {
   background-color: var(--surface-ground);
   color: var(--text-color);
 }
+
+.splide__splide {
+  transition: transform .2s;
+  transform: scale(1);
+}
+
 .splide__pagination {
   counter-reset: pagination-num;
 }
