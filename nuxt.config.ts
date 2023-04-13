@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
     modules: [
         "@nuxt/image-edge",
-        "@nuxtjs/tailwindcss",
+        //"@nuxtjs/tailwindcss",
     ],
     typescript: {
         shim: false
@@ -12,6 +12,7 @@ export default defineNuxtConfig({
         "primevue/resources/themes/vela-orange/theme.css",
         "primevue/resources/primevue.css",
         "primeicons/primeicons.css",
+        "primeflex/primeflex.css",
         "@splidejs/splide/css/sea-green",
         "@/assets/css/main.css"
     ],

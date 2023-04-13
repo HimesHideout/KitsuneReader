@@ -16,6 +16,7 @@
     "@splidejs/splide-extension-url-hash": "^0.3.0",
     "@splidejs/vue-splide": "^0.6.12",
     "normalize.css": "^8.0.1",
+    "primeflex": "^3.3.0",
     "primevue": "^3.26.1"
   }
 }

@@ -11,13 +11,24 @@ const pages = [
   "Test (2).png",
   "Test (3).png",
 ]
-let splide_options = {perPage: 1, padding: '25%', gap: '100%'}
+let splide_options = {perPage: 1, padding: '22.5%', gap: '100%'}
 
-function onSlideClick(e, slide) {
-  slide.slide.classList.toggle("zoom")
+function onSlideClick(splide, slide, e) {
+  let zoom = slide.slide.classList.toggle("zoom")
+  if (zoom) {
+    let slide_rect = slide.slide.getBoundingClientRect()
+    let base_x = (slide_rect.width / 2) + slide_rect.left
+    let base_y = (slide_rect.height / 2) + slide_rect.top
+    let x = -(e.clientX - base_x) / 2
+    let y = -(e.clientY - base_y) / 2
+    slide.slide.style.transform = `scale(${zoom_scale}) translate(${x}px, ${y}px)`
+  } else {
+    slide.slide.style.transform = `scale(1)`
+  }
 }
 
-function resetSlide(e, slide) {
+function resetSlide(splide, slide) {
+  slide.slide.style.transform = `scale(1)`
   slide.slide.classList.remove("zoom")
 }
 
@@ -29,8 +40,8 @@ function resetSlide(e, slide) {
     :options="splide_options" 
     @splide:click="onSlideClick" 
     @splide:inactive="resetSlide">
-      <SplideSlide v-for="page in pages">
-        <nuxt-img :src="pages_dir + page" sizes="sm:20vw md:50vw lg:50vw" placeholder/>
+      <SplideSlide v-for="page in pages" class="flex align-items-center h-screen">
+        <nuxt-img :src="pages_dir + page" sizes="50vw sm:50vw md:50vw lg:50vw" class="cursor-pointer" placeholder/>
       </SplideSlide>
     </Splide>
   </div>
@@ -40,6 +51,6 @@ function resetSlide(e, slide) {
   .zoom {
     transition: transform .2s;
     margin: 0 auto;
-    transform: scale(1.5);
+    transform: scale(1.5) translate(-100px, -100px);
   }
 </style>
