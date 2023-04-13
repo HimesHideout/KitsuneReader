@@ -11,7 +11,10 @@ const pages = [
   "Test (2).png",
   "Test (3).png",
 ]
-let splide_options = {perPage: 1, padding: '22.5%', gap: '100%'}
+let splide_options = {
+  perPage: 1, 
+  gap: '100%',
+}
 
 function onSlideClick(splide, slide, e) {
   let zoom = slide.slide.classList.toggle("zoom")
@@ -39,9 +42,10 @@ function resetSlide(splide, slide) {
     <Splide ref="splide" 
     :options="splide_options" 
     @splide:click="onSlideClick" 
-    @splide:inactive="resetSlide">
-      <SplideSlide v-for="page in pages" class="flex align-items-center h-screen">
-        <nuxt-img :src="pages_dir + page" sizes="50vw sm:50vw md:50vw lg:50vw" class="cursor-pointer" placeholder/>
+    @splide:inactive="resetSlide"
+    class="h-screen">
+      <SplideSlide v-for="page in pages" class="flex justify-content-center">
+        <nuxt-img :src="pages_dir + page" sizes="50vw sm:50vw" class="cursor-pointer" placeholder/>
       </SplideSlide>
     </Splide>
   </div>

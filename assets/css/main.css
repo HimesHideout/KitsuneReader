@@ -8,6 +8,11 @@ body {
   transform: scale(1);
 }
 
+.splide--slide {
+  display: flex;
+  align-items: center;
+}
+
 .splide__pagination {
   counter-reset: pagination-num;
 }
