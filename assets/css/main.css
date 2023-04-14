@@ -3,6 +3,10 @@ body {
   color: var(--text-color);
 }
 
+.splide {
+  padding: 0;
+}
+
 .splide__splide {
   transition: transform .2s;
   transform: scale(1);
@@ -11,6 +15,10 @@ body {
 .splide--slide {
   display: flex;
   align-items: center;
+}
+
+.splide__arrow {
+  top: 95%;
 }
 
 .splide__pagination {

@@ -14,6 +14,7 @@ const pages = [
 let splide_options = {
   perPage: 1, 
   gap: '100%',
+  pagination: false,
 }
 
 function onSlideClick(splide, slide, e) {
@@ -45,7 +46,7 @@ function resetSlide(splide, slide) {
     @splide:inactive="resetSlide"
     class="h-screen">
       <SplideSlide v-for="page in pages" class="flex justify-content-center">
-        <nuxt-img :src="pages_dir + page" sizes="50vw sm:50vw" class="cursor-pointer" placeholder/>
+        <nuxt-img :src="pages_dir + page" sizes="100vw sm:100vw md:80vw lg:60vw xl:35vw" class="cursor-pointer" placeholder/>
       </SplideSlide>
     </Splide>
   </div>
