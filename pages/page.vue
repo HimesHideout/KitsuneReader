@@ -40,6 +40,9 @@ function resetSlide(splide, slide) {
 
 <template>
   <div class="background">
+    <NuxtLink to="/" class="absolute">
+      <Button icon="pi pi-angle-left" class text></Button>
+    </NuxtLink>
     <Splide ref="splide" 
     :options="splide_options" 
     @splide:click="onSlideClick" 
