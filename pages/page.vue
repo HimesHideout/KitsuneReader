@@ -40,7 +40,7 @@ function resetSlide(splide, slide) {
 
 <template>
   <div class="background">
-    <NuxtLink to="/" class="absolute">
+    <NuxtLink to="/chapters" class="absolute">
       <Button icon="pi pi-angle-left" class text></Button>
     </NuxtLink>
     <Splide ref="splide" 

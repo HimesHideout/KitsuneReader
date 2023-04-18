@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
     modules: [
         "@nuxt/image-edge",
+        "@sidebase/nuxt-auth",
         //"@nuxtjs/tailwindcss",
     ],
     typescript: {
