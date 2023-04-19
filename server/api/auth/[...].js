@@ -12,11 +12,13 @@ export default NuxtAuthHandler({
         password: {label: "Password", type: "password", placeholder: "Password..."}
       },
       authorize (credentials) {
+        console.log("debug")
         //This will change once the database is connected.
         const user = {id : '1', name: "test", username: "test", password: "test2"}
-        if (credentials.username === user.username && credentials.password === user.password) {
+        if (credentials?.username === user.username && credentials?.password === user.password) {
           return user
         } else {
+          console.error("Invalid username or password")
           return null
         }
       }

@@ -8,8 +8,8 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@nuxt/devtools": "^0.4.1",
     "@nuxt/image-edge": "^1.0.0-27968280.9739e4d",
-    "@nuxtjs/tailwindcss": "^6.6.4",
     "@sidebase/nuxt-auth": "^0.6.0-alpha.1",
     "nuxt": "^3.2.3"
   },
@@ -19,5 +19,8 @@
     "normalize.css": "^8.0.1",
     "primeflex": "^3.3.0",
     "primevue": "^3.26.1"
+  },
+  "peerDependencies": {
+    "consola": "3.0.1"
   }
 }

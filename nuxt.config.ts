@@ -3,7 +3,7 @@ export default defineNuxtConfig({
     modules: [
         "@nuxt/image-edge",
         "@sidebase/nuxt-auth",
-        //"@nuxtjs/tailwindcss",
+        "@nuxt/devtools"
     ],
     typescript: {
         shim: false
@@ -17,6 +17,12 @@ export default defineNuxtConfig({
         "@splidejs/splide/css/sea-green",
         "@/assets/css/main.css"
     ],
+    auth: {
+        origin: process.env.AUTH_ORIGIN,
+        provider: {
+            type: "authjs"
+        },
+    },
     build: {
         transpile: ["primevue"]
     }
