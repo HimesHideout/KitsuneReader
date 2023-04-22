@@ -4,5 +4,6 @@ export default defineNuxtRouteMiddleware((to, from) => {
       return
     }
 
+    //return signIn(undefined, {callbackUrl: to.path})
     return navigateTo("/api/auth/signin")
 })
