@@ -7,7 +7,7 @@ let {data: chapters} = await useFetch("/api/chapters")
   <div>
     <DataView :value="chapters" :data-key="'id'" layout="grid">
       <template #header>
-        <h1>Chapters</h1>
+        <h1>Zero Cards, Over</h1>
       </template>
       <template #grid="slotProps">
         <NuxtLink :to="'/page/'" class="col-6 sm:col-4 md:col-3 lg:col-2 flex-none p-2 border-round">
@@ -16,7 +16,7 @@ let {data: chapters} = await useFetch("/api/chapters")
               <nuxt-img :src="slotProps.data.cover" placeholder/>
             </template>
             <template #title>
-              Chapter {{ slotProps.data.id }}
+              {{ slotProps.data.type }} {{ slotProps.data.type_number }}
             </template>
             <template #content>
               <h3>{{ slotProps.data.title }}</h3>

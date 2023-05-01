@@ -17,6 +17,12 @@ export default defineNuxtConfig({
         "@splidejs/splide/css/sea-green",
         "@/assets/css/main.css"
     ],
+    image: {
+        provider: "cloudinary",
+        cloudinary: {
+            baseURL: process.env.CLOUDINARY_URL
+        }
+    },
     auth: {
         origin: process.env.AUTH_ORIGIN,
         provider: {

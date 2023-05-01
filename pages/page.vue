@@ -5,11 +5,11 @@ import { Splide, SplideSlide } from '@splidejs/vue-splide';
 const splide = ref()
 const page_id = ref(0)
 const zoom_scale = 1.5
-const pages_dir = "/images/test/"
+const pages_dir = "/test/"
 const pages = [
-  "Test (1).png",
-  "Test (2).png",
-  "Test (3).png",
+  "Test_1_hh1li7.png",
+  "Test_2_bzkis5.png",
+  "Test_3_t1h0eg.png",
 ]
 let splide_options = {
   perPage: 1, 
@@ -41,7 +41,7 @@ function resetSlide(splide, slide) {
 <template>
   <div class="background">
     <NuxtLink to="/chapters" class="absolute">
-      <Button icon="pi pi-angle-left" class text></Button>
+      <Button icon="pi pi-angle-left" class="forefront" text></Button>
     </NuxtLink>
     <Splide ref="splide" 
     :options="splide_options" 
@@ -60,5 +60,8 @@ function resetSlide(splide, slide) {
     transition: transform .2s;
     margin: 0 auto;
     transform: scale(1.5) translate(-100px, -100px);
+  }
+  .forefront {
+    z-index: 1;
   }
 </style>
