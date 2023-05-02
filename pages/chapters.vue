@@ -10,7 +10,7 @@ let {data: chapters} = await useFetch("/api/chapters")
         <h1>Zero Cards, Over</h1>
       </template>
       <template #grid="slotProps">
-        <NuxtLink :to="'/page/'" class="col-6 sm:col-4 md:col-3 lg:col-2 flex-none p-2 border-round">
+        <NuxtLink :to="'/reader/' + slotProps.data.chapter_number" class="col-6 sm:col-4 md:col-3 lg:col-2 flex-none p-2 border-round">
           <Card>
             <template #header>
               <nuxt-img :src="slotProps.data.cover" placeholder/>
