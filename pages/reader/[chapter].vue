@@ -16,12 +16,15 @@ let splide_options = {
 }
 
 let j = 0
-for (let i = 1; i <= data.pages_count; i++) {
+for (let i = 1; i <= data.value.pages_count; i++) {
   let page
-  if (data.pages[j].page_number == i) {
-    page = data.pages[j]
+  console.log(data.value)
+  if (data.value.pages[j].page_number == i) {
+    page = data.value.pages[j]
     if (page.image === undefined) {
       page.image = pages_dir + i + ".png"
+    } else {
+      page.image = pages_dir + page.image
     }
     j++
   } else {
@@ -54,7 +57,6 @@ function resetSlide(splide, slide) {
 
 <template>
   <div class="background">
-    <p>{{ data }}</p>
     <NuxtLink to="/chapters" class="absolute">
       <Button icon="pi pi-angle-left" class="forefront" text></Button>
     </NuxtLink>
