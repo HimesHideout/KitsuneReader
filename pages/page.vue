@@ -5,37 +5,31 @@ import { Splide, SplideSlide } from '@splidejs/vue-splide';
 const splide = ref()
 const page_id = ref(0)
 const visible_sidebar = ref(false)
-const zoom_scale = 1.5
-const pages_dir = "/test/"
-const pages = [
-  "Test_1_hh1li7.png",
-  "Test_2_bzkis5.png",
-  "Test_3_t1h0eg.png",
-]
-let {data: chapters} = await useFetch("/api/chapters")
-let splide_options = {
+const fullscreen = ref(false)
+const splide_options = ref({
   perPage: 1, 
   gap: '100%',
   pagination: false,
-}
+  arrows: true
+})
+const zoom_scale = 1.5
+const pages_dir = "/test/"
+const pages = [
+  "Test_1.png",
+  "Test_2.png",
+  "Test_3.png",
+]
+let {data: chapters} = await useFetch("/api/chapters")
 
 function onSlideClick(splide, slide, e) {
-  let zoom = slide.slide.classList.toggle("zoom")
-  if (zoom) {
-    let slide_rect = slide.slide.getBoundingClientRect()
-    let base_x = (slide_rect.width / 2) + slide_rect.left
-    let base_y = (slide_rect.height / 2) + slide_rect.top
-    let x = -(e.clientX - base_x) / 2
-    let y = -(e.clientY - base_y) / 2
-    slide.slide.style.transform = `scale(${zoom_scale}) translate(${x}px, ${y}px)`
-  } else {
-    slide.slide.style.transform = `scale(1)`
-  }
+  fullscreen.value = !fullscreen.value
+  document.getElementById("link-back").classList.toggle("hidden")
+  document.getElementById("sidebar-button").classList.toggle("hidden")
+  splide_options.value.arrows = !fullscreen.value
 }
 
 function resetSlide(splide, slide) {
-  slide.slide.style.transform = `scale(1)`
-  slide.slide.classList.remove("zoom")
+  console.log("test")
 }
 
 </script>
@@ -52,10 +46,10 @@ function resetSlide(splide, slide) {
         </li>
       </ul>
     </Sidebar>
-    <NuxtLink to="/chapters" class="absolute">
+    <NuxtLink to="/chapters" class="absolute" id="link-back">
       <Button icon="pi pi-angle-left" class="forefront" text></Button>
     </NuxtLink>
-    <Button icon="pi pi-bars" @click="visible_sidebar = true" class="sidebar-button" text></Button>
+    <Button icon="pi pi-bars" @click="visible_sidebar = true" id="sidebar-button" text></Button>
     <Splide ref="splide" 
     :options="splide_options" 
     @splide:click="onSlideClick" 
@@ -77,7 +71,7 @@ function resetSlide(splide, slide) {
   .forefront {
     z-index: 1;
   }
-  .sidebar-button {
+  #sidebar-button {
     margin-left: 95%;
   }
 </style>
