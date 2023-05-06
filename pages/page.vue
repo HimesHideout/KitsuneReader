@@ -10,6 +10,7 @@ const splide_options = ref({
   perPage: 1, 
   gap: '100%',
   pagination: false,
+  keyboard: true,
   arrows: true
 })
 const zoom_scale = 1.5
@@ -46,10 +47,12 @@ function resetSlide(splide, slide) {
         </li>
       </ul>
     </Sidebar>
-    <NuxtLink to="/chapters" class="absolute" id="link-back">
-      <Button icon="pi pi-angle-left" class="forefront" text></Button>
-    </NuxtLink>
-    <Button icon="pi pi-bars" @click="visible_sidebar = true" id="sidebar-button" text></Button>
+    <header class="relative">
+      <NuxtLink to="/chapters" class="absolute" id="link-back">
+        <Button icon="pi pi-angle-left" class="forefront" text></Button>
+      </NuxtLink>
+      <Button icon="pi pi-bars" @click="visible_sidebar = true" id="sidebar-button" class="absolute" text></Button>
+    </header>
     <Splide ref="splide" 
     :options="splide_options" 
     @splide:click="onSlideClick" 
@@ -72,6 +75,7 @@ function resetSlide(splide, slide) {
     z-index: 1;
   }
   #sidebar-button {
-    margin-left: 95%;
+    top: 0px;
+    right: 0px;
   }
 </style>

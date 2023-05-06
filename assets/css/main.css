@@ -18,7 +18,8 @@ body {
 }
 
 .splide__arrow {
-  top: 95%;
+  height: 95%;
+  width: 18%;
 }
 
 .splide__pagination {
