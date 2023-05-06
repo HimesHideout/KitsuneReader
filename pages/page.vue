@@ -4,6 +4,7 @@ import { Splide, SplideSlide } from '@splidejs/vue-splide';
 //import { URLHash } from "@splidejs/splide-extension-url-hash"
 const splide = ref()
 const page_id = ref(0)
+const visible_sidebar = ref(false)
 const zoom_scale = 1.5
 const pages_dir = "/test/"
 const pages = [
@@ -11,6 +12,7 @@ const pages = [
   "Test_2_bzkis5.png",
   "Test_3_t1h0eg.png",
 ]
+let {data: chapters} = await useFetch("/api/chapters")
 let splide_options = {
   perPage: 1, 
   gap: '100%',
@@ -40,9 +42,20 @@ function resetSlide(splide, slide) {
 
 <template>
   <div class="background">
+    <Sidebar v-model:visible="visible_sidebar">
+      <h2>Chapters</h2>
+      <ul>
+        <li v-for="chapter in chapters" class="text-primary">
+          <NuxtLink :to="'/reader/' + chapter.chapter_number">
+            <p class="text-color appearance-none">{{chapter.type}} {{ chapter.type_number }}: {{ chapter.title }}</p>
+          </NuxtLink>
+        </li>
+      </ul>
+    </Sidebar>
     <NuxtLink to="/chapters" class="absolute">
       <Button icon="pi pi-angle-left" class="forefront" text></Button>
     </NuxtLink>
+    <Button icon="pi pi-arrow-right" @click="visible_sidebar = true" class="sidebar-button"></Button>
     <Splide ref="splide" 
     :options="splide_options" 
     @splide:click="onSlideClick" 
@@ -63,5 +76,8 @@ function resetSlide(splide, slide) {
   }
   .forefront {
     z-index: 1;
+  }
+  .sidebar-button {
+    margin-left: 5%;
   }
 </style>
