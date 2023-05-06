@@ -61,7 +61,7 @@ function resetSlide(splide, slide) {
 
 <template>
   <div class="background">
-    <Sidebar v-model:visible="visible_sidebar">
+    <Sidebar v-model:visible="visible_sidebar" position="right">
       <h2>Chapters</h2>
       <ul>
         <li v-for="chapter in chapters" class="text-primary">
@@ -74,7 +74,7 @@ function resetSlide(splide, slide) {
     <NuxtLink to="/chapters" class="absolute">
       <Button icon="pi pi-angle-left" class="forefront" text></Button>
     </NuxtLink>
-    <Button icon="pi pi-arrow-right" @click="visible_sidebar = true" class="sidebar-button forefront"></Button>
+    <Button icon="pi pi-bars" @click="visible_sidebar = true" class="sidebar-button" text></Button>
     <Splide ref="splide" 
     :options="splide_options" 
     @splide:click="onSlideClick" 
@@ -97,6 +97,6 @@ function resetSlide(splide, slide) {
     z-index: 1;
   }
   .sidebar-button {
-    margin-left: 5%;
+    margin-left: 95%;
   }
 </style>
