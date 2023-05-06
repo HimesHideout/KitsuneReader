@@ -23,10 +23,18 @@ const pages = [
 let {data: chapters} = await useFetch("/api/chapters")
 
 function onSlideClick(splide, slide, e) {
-  fullscreen.value = !fullscreen.value
-  document.getElementById("link-back").classList.toggle("hidden")
-  document.getElementById("sidebar-button").classList.toggle("hidden")
-  splide_options.value.arrows = !fullscreen.value
+  let left_touch = e.clientX < window.innerWidth / 3
+  let right_touch = e.clientX > (window.innerWidth / 3) * 2
+  if (left_touch) {
+    splide.go('<')
+  } else if (right_touch) {
+    splide.go('>')
+  } else {
+    fullscreen.value = !fullscreen.value
+    document.getElementById("link-back").classList.toggle("hidden")
+    document.getElementById("sidebar-button").classList.toggle("hidden")
+    splide_options.value.arrows = !fullscreen.value
+  }
 }
 
 function resetSlide(splide, slide) {
