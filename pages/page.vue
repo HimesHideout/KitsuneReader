@@ -41,6 +41,13 @@ function resetSlide(splide, slide) {
   console.log("test")
 }
 
+onMounted(() => {
+  let arrows = document.getElementsByClassName("splide__arrow")
+  for (let arrow of arrows) {
+    arrow.classList.add("hidden")
+    arrow.classList.add("sm:block")
+  }
+})
 </script>
 
 <template>
