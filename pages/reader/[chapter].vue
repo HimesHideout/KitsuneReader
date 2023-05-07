@@ -10,7 +10,7 @@ const splide_options = ref({
   perPage: 1, 
   gap: '100%',
   pagination: false,
-  keyboard: true,
+  keyboard: "global",
   arrows: true
 })
 const zoom_scale = 1.5
