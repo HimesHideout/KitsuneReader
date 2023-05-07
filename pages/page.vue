@@ -59,7 +59,7 @@ function resetSlide(splide, slide) {
       <NuxtLink to="/chapters" class="absolute" id="link-back">
         <Button icon="pi pi-angle-left" class="forefront" text></Button>
       </NuxtLink>
-      <Button icon="pi pi-bars" @click="visible_sidebar = true" id="sidebar-button" class="absolute" text></Button>
+      <Button icon="pi pi-bars" @click="visible_sidebar = true" id="sidebar-button" class="absolute forefront" text></Button>
     </header>
     <Splide ref="splide" 
     :options="splide_options" 
@@ -80,7 +80,7 @@ function resetSlide(splide, slide) {
     transform: scale(1.5) translate(-100px, -100px);
   }
   .forefront {
-    z-index: 1;
+    z-index: 2;
   }
   #sidebar-button {
     top: 0px;

@@ -77,7 +77,7 @@ function resetSlide(splide, slide) {
     <NuxtLink to="/chapters" class="absolute" id="link-back">
       <Button icon="pi pi-angle-left" class="forefront" text></Button>
     </NuxtLink>
-    <Button icon="pi pi-bars" @click="visible_sidebar = true" id="sidebar-button" text></Button>
+    <Button icon="pi pi-bars" @click="visible_sidebar = true" id="sidebar-button" class="absolute forefront" text></Button>
     <Splide ref="splide" 
     :options="splide_options" 
     @splide:click="onSlideClick" 
