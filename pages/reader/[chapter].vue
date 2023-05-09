@@ -20,26 +20,30 @@ let {data: chapters} = await useFetch("/api/chapters")
 const pages_dir = "/" + route.params.chapter + "/"
 let pages = []
 
-let j = 0
-for (let i = 1; i <= data.value.pages_count; i++) {
-  if (data.value.pages.length == 0) {
-    break
-  } 
-  let page
-  if (data.value.pages[j].page_number == i) {
-    page = data.value.pages[j]
-    if (page.image === undefined) {
-      page.image = pages_dir + i + ".png"
+function init() {
+  let j = 0
+  for (let i = 1; i <= data.value.pages_count; i++) {
+    if (data.value.pages.length == 0) {
+      break
+    } 
+    let page
+    if (data.value.pages[j].page_number == i) {
+      page = data.value.pages[j]
+      if (page.image === undefined) {
+        page.image = pages_dir + i + ".png"
+      } else {
+        page.image = pages_dir + page.image
+      }
+      j++
     } else {
-      page.image = pages_dir + page.image
+      page = {page_number: i, image: pages_dir + i + ".png"}
     }
-    j++
-  } else {
-    page = {page_number: i, image: pages_dir + i + ".png"}
+  
+    pages.push(page)
   }
-
-  pages.push(page)
 }
+
+init()
 
 function onSlideClick(splide, slide, e) {
   let left_touch = e.clientX < window.innerWidth / 3
