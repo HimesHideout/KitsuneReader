@@ -1,7 +1,8 @@
 <script setup></script>
 
 <template>
-  <header>
+  <div>
+    <header>
       <NuxtLink to="/" id="link-back-cover">
           <Button icon="pi pi-angle-left" class="forefront" text></Button>
       </NuxtLink>
