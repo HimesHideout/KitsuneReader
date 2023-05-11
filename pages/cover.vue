@@ -1,9 +1,10 @@
 <script setup></script>
 
 <template>
-  <div>
-    <header>
-      <NuxtLink to="/"><Button label="Go back"/></NuxtLink>
+  <header>
+      <NuxtLink to="/" id="link-back-cover">
+          <Button icon="pi pi-angle-left" class="forefront" text></Button>
+      </NuxtLink>
     </header>
     <div class="main_card">
       <Card>

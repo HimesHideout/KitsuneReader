@@ -7,7 +7,9 @@ let {data: chapters} = await useFetch("/api/chapters")
   <div>
     <DataView :value="chapters" :data-key="'id'" layout="grid">
       <template #header>
-        <NuxtLink to="/cover"><Button label="Go back"/></NuxtLink>
+        <NuxtLink to="/cover" id="link-back-chapters">
+        <Button icon="pi pi-angle-left" class="forefront" text></Button>
+        </NuxtLink>
         <h1>Zero Cards, Over</h1>
       </template>
       <template #grid="slotProps">

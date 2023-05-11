@@ -19,7 +19,7 @@
           <p>Birthday messages from the kits in the community!</p>
         </template>
         <template #content>
-          <NuxtLink to="/messages"><Button label="Messages" /></NuxtLink>
+          <NuxtLink to="/messages"><Button label="Birthday Messages" /></NuxtLink>
         </template>
       </Card>
     </div>

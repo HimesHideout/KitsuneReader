@@ -1,8 +1,14 @@
-<script lang="ts" setup></script>
+<script setup></script>
 
 <template>
   <div>
-    Insert messages here
+    <NuxtLink to="/" id="link-back-messages">
+      <Button icon="pi pi-angle-left" class="forefront" text></Button>
+    </NuxtLink>
+    <!-- Need to connect to database -->
+    <ul>
+        <li>Place holder for images</li>
+    </ul>
   </div>
 </template>
 
