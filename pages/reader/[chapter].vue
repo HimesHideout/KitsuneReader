@@ -76,7 +76,7 @@ onMounted(() => {
   <div class="background">
     <Sidebar v-model:visible="visible_sidebar" position="right">
       <h2>Chapters</h2>
-      <Accordion :activeIndex="parseInt(route.params.chapter)">
+      <Accordion :activeIndex="parseInt(route.params.chapter - 1)">
         <AccordionTab v-for="chapter in chapters" :header="chapter.type + ' ' + chapter.type_number + ': ' + chapter.title">
           <NuxtLink :to="'/reader/' + chapter.chapter_number + '/#' + n" v-for="n in chapter.pages_count">
             <Button class="m-1 border-circle" :label="n.toString()" @click="chapter.chapter_number == route.params.chapter ? navigateToPage(n) : ''"></Button>
