@@ -1,7 +1,6 @@
 <script setup>
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
-//TODO: Find out how to mount this extension on the splide object reference.
-//import { URLHash } from "@splidejs/splide-extension-url-hash"
+import { URLHash } from "@splidejs/splide-extension-url-hash"
 const splide = ref()
 const page_id = ref(0)
 const visible_sidebar = ref(false)
@@ -60,8 +59,8 @@ function onSlideClick(splide, slide, e) {
   }
 }
 
-function resetSlide(splide, slide) {
-  console.log("test")
+function navigateToPage(n) {
+  splide.value.splide.go(n - 1)
 }
 
 onMounted(() => {
@@ -77,13 +76,13 @@ onMounted(() => {
   <div class="background">
     <Sidebar v-model:visible="visible_sidebar" position="right">
       <h2>Chapters</h2>
-      <ul>
-        <li v-for="chapter in chapters" class="text-primary">
-          <NuxtLink :to="'/reader/' + chapter.chapter_number">
-            <p class="text-color appearance-none">{{chapter.type}} {{ chapter.type_number }}: {{ chapter.title }}</p>
+      <Accordion :activeIndex="parseInt(route.params.chapter)">
+        <AccordionTab v-for="chapter in chapters" :header="chapter.type + ' ' + chapter.type_number + ': ' + chapter.title">
+          <NuxtLink :to="'/reader/' + chapter.chapter_number + '/#' + n" v-for="n in chapter.pages_count">
+            <Button class="m-1 border-circle" :label="n.toString()" @click="chapter.chapter_number == route.params.chapter ? navigateToPage(n) : ''"></Button>
           </NuxtLink>
-        </li>
-      </ul>
+        </AccordionTab>
+      </Accordion>
     </Sidebar>
     <NuxtLink to="/chapters" class="absolute" id="link-back">
       <Button icon="pi pi-angle-left" class="forefront" text></Button>
@@ -92,9 +91,9 @@ onMounted(() => {
     <Splide ref="splide" 
     :options="splide_options" 
     @splide:click="onSlideClick" 
-    @splide:inactive="resetSlide"
+    :extensions="{'url-hash': URLHash}"
     class="h-screen">
-      <SplideSlide v-for="page in pages" class="flex justify-content-center">
+      <SplideSlide v-for="page in pages" class="flex justify-content-center" :data-splide-hash="page.page_number">
         <nuxt-img :src="page.image" sizes="100vw sm:100vw md:80vw lg:60vw xl:35vw" class="cursor-pointer" placeholder/>
       </SplideSlide>
     </Splide>
