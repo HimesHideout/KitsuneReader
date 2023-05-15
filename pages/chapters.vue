@@ -4,16 +4,16 @@ let {data: chapters} = await useFetch("/api/chapters")
 </script>
 
 <template>
+  <header>
+      <NuxtLink to="/cover" id="link-back-chapters" class="absolute">
+          <Button icon="pi pi-angle-left" class="forefront" text></Button>
+      </NuxtLink>
+      <div class="flex align-items-center justify-content-around">
+        <h2>CHAPTERS</h2>
+      </div>
+  </header>
   <div>
     <DataView :value="chapters" :data-key="'id'" layout="grid">
-      <template #header>
-        <NuxtLink to="/cover" id="link-back-chapters" class="absolute">
-        <Button icon="pi pi-angle-left" class="forefront" text></Button>
-        </NuxtLink>
-        <div class="flex align-items-center justify-content-around">
-        <h2>Chapters</h2>
-      </div>
-      </template>
       <template #grid="slotProps">
         <NuxtLink :to="'/reader/' + slotProps.data.chapter_number" class="col-6 sm:col-4 md:col-3 lg:col-2 flex-none p-2 border-round">
           <Card>

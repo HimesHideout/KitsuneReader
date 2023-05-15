@@ -2,7 +2,7 @@
 
 <template>
   <div class="h-screen">
-    <div class="flex align-items-center justify-content-around title">
+    <div class="flex align-items-center justify-content-around">
       <h2>HIME BIRTHDAY PROJECT 2023</h2>
     </div>
     <div class="flex flex-wrap align-items-center justify-content-around content mb-8">
