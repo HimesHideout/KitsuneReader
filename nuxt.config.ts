@@ -24,10 +24,7 @@ export default defineNuxtConfig({
         }
     },
     auth: {
-        origin: process.env.AUTH_ORIGIN,
-        provider: {
-            type: "authjs"
-        },
+        //origin: process.env.AUTH_ORIGIN,
     },
     build: {
         transpile: ["primevue"]

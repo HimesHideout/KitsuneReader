@@ -1,6 +1,6 @@
 <script setup>
 definePageMeta({
-  middleware: "auth-custom"
+  middleware: "auth"
 })
 
 const { signOut } = useAuth()
