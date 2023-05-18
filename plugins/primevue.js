@@ -7,6 +7,8 @@ import Column from 'primevue/column'
 import ColumnGroup from 'primevue/columngroup'
 import DataTable from 'primevue/datatable'
 import DataView from 'primevue/dataview'
+import InputNumber from 'primevue/inputnumber'
+import InputText from 'primevue/inputtext'
 import Row from 'primevue/row'
 import Sidebar from 'primevue/sidebar'
 import Toast from 'primevue/toast'
@@ -22,6 +24,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.component("ColumnGroup", ColumnGroup)
     nuxtApp.vueApp.component("DataTable", DataTable)
     nuxtApp.vueApp.component("DataView", DataView)
+    nuxtApp.vueApp.component("InputNumber", InputNumber)
+    nuxtApp.vueApp.component("InputText", InputText)
     nuxtApp.vueApp.component("Row", Row)
     nuxtApp.vueApp.component("Sidebar", Sidebar)
     nuxtApp.vueApp.use(ToastService)
