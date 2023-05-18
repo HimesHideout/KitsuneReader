@@ -9,6 +9,8 @@ import DataTable from 'primevue/datatable'
 import DataView from 'primevue/dataview'
 import Row from 'primevue/row'
 import Sidebar from 'primevue/sidebar'
+import Toast from 'primevue/toast'
+import ToastService from 'primevue/toastservice'
 
 export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.use(PrimeVue, {ripple: true})
@@ -22,4 +24,6 @@ export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.component("DataView", DataView)
     nuxtApp.vueApp.component("Row", Row)
     nuxtApp.vueApp.component("Sidebar", Sidebar)
+    nuxtApp.vueApp.use(ToastService)
+    nuxtApp.vueApp.component("Toast", Toast)
 })

@@ -27,10 +27,12 @@ export default NuxtAuthHandler({
         const options = {projection: {_id: 0, username: 1, password: 1}}
         const user = await users.findOne(query, options)
         if (user === null) {
+          client.close()
           console.error("Couldn't find username")
           return null
         }
         const match = await bcrypt.compare(credentials?.password, user.password)
+        client.close()
         if (match) {
           return user
         } else {
