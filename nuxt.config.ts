@@ -23,6 +23,12 @@ export default defineNuxtConfig({
             baseURL: process.env.CLOUDINARY_URL
         }
     },
+    runtimeConfig: {
+        public: {
+            CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+            CLOUDINARY_UPLOAD_PRESET: process.env.CLOUDINARY_UPLOAD_PRESET
+        }
+    },
     auth: {
         //origin: process.env.AUTH_ORIGIN,
     },
