@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+let messages = ["Message 1", "Message 2", "Message 3"]
+</script>
 
 <template>
   <header>
@@ -11,9 +13,9 @@
   </header>
   <div>
     <!-- Need to connect to database -->
-    <ul>
-        <li>Place holder for images</li>
-    </ul>
+    <div class="flex flex-column align-items-center justify-content-around">
+      <Skeleton v-for="message in messages" width="50%" height="15rem" class="m-5"/>
+    </div>
   </div>
 </template>
 

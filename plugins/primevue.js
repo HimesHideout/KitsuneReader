@@ -11,6 +11,7 @@ import InputNumber from 'primevue/inputnumber'
 import InputText from 'primevue/inputtext'
 import Row from 'primevue/row'
 import Sidebar from 'primevue/sidebar'
+import Skeleton from 'primevue/skeleton'
 import Toast from 'primevue/toast'
 import ToastService from 'primevue/toastservice'
 
@@ -28,6 +29,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.component("InputText", InputText)
     nuxtApp.vueApp.component("Row", Row)
     nuxtApp.vueApp.component("Sidebar", Sidebar)
+    nuxtApp.vueApp.component("Skeleton", Skeleton)
     nuxtApp.vueApp.use(ToastService)
     nuxtApp.vueApp.component("Toast", Toast)
 })
