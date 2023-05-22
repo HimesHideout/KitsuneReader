@@ -30,6 +30,12 @@ export default defineEventHandler(async (event) => {
       } else {
         chapter.pages = chapter.pages.pages
       }
+      chapter.pages.sort((a, b) => a.page_number - b.page_number)
+      for (let page of chapter.pages) {
+        if (page.image === null) {
+          page.image = `${page.page_number}.png`
+        }
+      }
     }
   } finally {
     await client.close()

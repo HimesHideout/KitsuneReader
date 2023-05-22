@@ -23,11 +23,13 @@ function onRowReorder(event, isPage=false) {
     for (let i = 0; i < chapters.value.length; i++) {
       chapters.value[i].chapter_number = i + 1
     }
+    updateChapters()
   } else {
     chapters.value[event.value[0].chapter_number - 1].pages = event.value
     for (let i = 0; i < chapters.value[event.value[0].chapter_number - 1].pages.length; i++) {
       chapters.value[event.value[0].chapter_number - 1].pages[i].page_number = i + 1
     }
+    updatePages(event.value[0].chapter_number, chapters.value[event.value[0].chapter_number - 1].pages)
   }
 }
 
@@ -35,24 +37,58 @@ function onRowEditSave(event, values=null) {
   let { newData, index } = event
   if (values == null) {
     chapters.value[index] = newData
+    useFetch(`/api/chapter/${event.value.chapter_number}`,
+    {
+      method: "PUT",
+      body: newData
+    })
   } else {
     values[index] = newData
+    useFetch(`/api/page/${event.value.page_number}`,
+    {
+      method: "PUT",
+      body: newData
+    })
   }
 }
 
-function addPage(pages) {
-  pages.push({
+function addPage(pages, chapter_number) {
+  let new_page = {
+    chapter_number: chapter_number,
     page_number: pages.length + 1,
-    image: "",
-    effects: ""
+    image: `${pages.length + 1}.png`,
+    effects: []
+  }
+  pages.push(new_page)
+  useFetch("/api/page", {
+    method: "POST",
+    body: new_page
   })
 }
 
-function removePage(page, index) {
+async function removePage(page, index) {
   chapters.value[page.chapter_number - 1].pages.splice(index, 1)
   for (let i = 0; i < chapters.value[page.chapter_number - 1].pages.length; i++) {
     chapters.value[page.chapter_number - 1].pages[i].page_number = i + 1
   }
+  await useFetch(`/api/page/${page.page_number}`, {
+    method: "DELETE",
+    body: page
+  })
+}
+
+function updatePages(chapter_number, pages) {
+  useFetch("/api/pages", {
+    method: "POST",
+    body: {pages, chapter_number}
+  })
+}
+
+function updateChapters() {
+  useFetch("/api/chapters", {
+    method: "POST",
+    body: chapters.value
+  })
 }
 
 function uploadImage() {
@@ -123,6 +159,9 @@ onMounted(() => {
             <Column rowReorder></Column>
             <Column field="page_number" header="Page"></Column>
             <Column field="image" header="Image">
+              <template #body="slotProps">
+                <nuxt-img :src="slotProps.data.chapter_number + '/' + slotProps.data.image" sizes="5vw sm:5vw"></nuxt-img>
+              </template>
               <template #editor="{ data, field }">
                 <InputText v-model="data[field]"/>
               </template>
@@ -135,7 +174,7 @@ onMounted(() => {
               </template>
             </Column>
           </DataTable>
-          <Button label="Add page" @click="addPage(slotProps.data.pages)" />
+          <Button label="Add page" @click="addPage(slotProps.data.pages, slotProps.data.chapter_number)" />
         </div>
       </template>
     </DataTable>
