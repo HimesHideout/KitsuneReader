@@ -11,6 +11,7 @@ const config = useRuntimeConfig()
 const expandedRows = ref([])
 const editingRows = ref([])
 const editingExpandedRows = ref([])
+const uploadImageVariable = ref([])
 let upload_widget = null
 const toast = useToast()
 
@@ -34,17 +35,17 @@ function onRowReorder(event, isPage=false) {
 }
 
 function onRowEditSave(event, values=null) {
-  let { newData, index } = event
+  let { newData, index, data} = event
   if (values == null) {
     chapters.value[index] = newData
-    useFetch(`/api/chapter/${event.value.chapter_number}`,
+    useFetch(`/api/chapter/${data.chapter_number}`,
     {
       method: "PUT",
       body: newData
     })
   } else {
     values[index] = newData
-    useFetch(`/api/page/${event.value.page_number}`,
+    useFetch(`/api/page/${data.page_number}`,
     {
       method: "PUT",
       body: newData
@@ -91,8 +92,21 @@ function updateChapters() {
   })
 }
 
-function uploadImage() {
+function uploadImage(data, field) {
+  uploadImageVariable.value = [data, field]
+  upload_widget.update({folder: `kitsune-reader/${data.chapter_number}`})
   upload_widget.open()
+}
+
+async function generateCloudinarySignature(callback, params_to_sign) {
+  let { data: signature} = await useFetch("/api/cloudinary_sign",
+    {
+      method: "POST",
+      body: params_to_sign
+    }
+  )
+
+  callback(signature.value)
 }
 
 function uploadCallback(error, result) {
@@ -100,16 +114,25 @@ function uploadCallback(error, result) {
     console.log(error)
     return
   } else if (result.event === "success") {
-    console.log(result.info)
+    let filename = ""
+    if (uploadImageVariable.value[0].page_number === undefined) {
+      filename = result.info.public_id.replace("kitsune-reader", "")
+    } else {
+      filename = result.info.public_id.replace(`${result.info.folder}/`, "")
+    }
+    filename = `${filename}.${result.info.format}`
+    uploadImageVariable.value[0][uploadImageVariable.value[1]] = filename
+    uploadImageVariable.value = []
   }
 }
 
 onMounted(() => {
   upload_widget = cloudinary.createUploadWidget({
-    cloudname: config.public.CLOUDINARY_CLOUD_NAME,
-    upload_preset: config.public.CLOUDINARY_UPLOAD_PRESET,
+    cloudName: config.public.CLOUDINARY_CLOUD_NAME,
+    uploadPreset: config.public.CLOUDINARY_UPLOAD_PRESET,
+    api_key: config.public.CLOUDINARY_API_KEY,
+    uploadSignature: generateCloudinarySignature
   }, uploadCallback)
-
 })
 
 </script>
@@ -139,7 +162,7 @@ onMounted(() => {
           <nuxt-img :src="slotProps.data.cover" sizes="5vw sm:5vw"></nuxt-img>
         </template>
         <template #editor="{ data, field }">
-          <InputText v-model="data[field]"/>
+          <Button label="Upload image" @click="uploadImage(data, field)"/>
         </template>
       </Column>
       <Column field="type" header="Type">
@@ -163,7 +186,7 @@ onMounted(() => {
                 <nuxt-img :src="slotProps.data.chapter_number + '/' + slotProps.data.image" sizes="5vw sm:5vw"></nuxt-img>
               </template>
               <template #editor="{ data, field }">
-                <InputText v-model="data[field]"/>
+                <Button label="Upload image" @click="uploadImage(data, field)"/>
               </template>
             </Column>
             <Column field="effects" header="Effects"></Column>
