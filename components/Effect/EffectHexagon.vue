@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div id="background" class="h-full w-full absolute">
+  <div id="background" class="h-screen w-full absolute">
   </div>
 </template>
 
