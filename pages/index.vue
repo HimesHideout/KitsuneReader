@@ -8,7 +8,7 @@ import VanillaTilt from "vanilla-tilt";
       <h2>HIME BIRTHDAY PROJECT 2023</h2>
     </div>
     <div class="flex flex-wrap align-items-center justify-content-around content mb-8">
-      <Card class="w-5 mb-8" data-tilt>
+      <Card class="w-5 mb-8" data-tilt data-tilt-max="90" data-tilt-scale="1.5">
         <template #title>
           <p>A Collaborative Manga Project, put together by the talented writers and artists in Hime's Hideout</p>
           </template>
@@ -16,7 +16,7 @@ import VanillaTilt from "vanilla-tilt";
           <NuxtLink to="/cover"><Button label="Manga" /></NuxtLink>
         </template>
       </Card>
-      <Card class="w-5 mb-8" data-tilt>
+      <Card class="w-5 mb-8" data-tilt data-tilt-max="90" data-tilt-scale="1.5">
         <template #title>
           <p>Birthday messages from the kits in the community!</p>
         </template>
