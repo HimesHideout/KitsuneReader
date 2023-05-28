@@ -35,5 +35,8 @@ export default defineNuxtConfig({
     },
     build: {
         transpile: ["primevue"]
+    },
+    app: {
+        pageTransition: {name: "page", mode: "out-in"}
     }
 })
