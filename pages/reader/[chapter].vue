@@ -16,6 +16,7 @@ const EffectFancy = resolveComponent('EffectFancy')
 const EffectHexagon = resolveComponent('EffectHexagon')
 const EffectRainbow = resolveComponent('EffectRainbow')
 const EffectSunTornado = resolveComponent('EffectSunTornado')
+const EffectClouds = resolveComponent("EffectClouds")
 
 const splide = ref()
 const page_id = ref(0)
@@ -43,7 +44,8 @@ const effects = {
   "Fancy": EffectFancy, 
   "Hexagon": EffectHexagon, 
   "Rainbow": EffectRainbow, 
-  "SunTornado": EffectSunTornado
+  "SunTornado": EffectSunTornado,
+  "Clouds": EffectClouds
 }
 const currentEffect = ref("Normal")
 const currentEffectComponent = computed(() => effects[currentEffect.value])

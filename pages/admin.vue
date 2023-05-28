@@ -6,7 +6,7 @@ definePageMeta({
 import { useToast } from 'primevue/usetoast'
 useHead({script: [{src: "https://upload-widget.cloudinary.com/global/all.js", type: "text/javascript"}]})
 
-const effects = ["Normal", "Constellation", "Morning", "Twilight", "LightPrism", "DarkPrism", "DayTornado", "Fancy", "Hexagon", "Rainbow", "SunTornado"]
+const effects = ["Normal", "Constellation", "Morning", "Twilight", "LightPrism", "DarkPrism", "DayTornado", "Fancy", "Hexagon", "Rainbow", "SunTornado", "Clouds"]
 const { signOut } = useAuth()
 const config = useRuntimeConfig()
 const expandedRows = ref([])
