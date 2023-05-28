@@ -6,6 +6,7 @@ definePageMeta({
 import { useToast } from 'primevue/usetoast'
 useHead({script: [{src: "https://upload-widget.cloudinary.com/global/all.js", type: "text/javascript"}]})
 
+const effects = ["Normal", "Constellation", "Morning", "Twilight", "LightPrism", "DarkPrism", "DayTornado", "Fancy", "Hexagon", "Rainbow", "SunTornado"]
 const { signOut } = useAuth()
 const config = useRuntimeConfig()
 const expandedRows = ref([])
@@ -58,7 +59,7 @@ function addPage(pages, chapter_number) {
     chapter_number: chapter_number,
     page_number: pages.length + 1,
     image: `${pages.length + 1}.png`,
-    effects: []
+    effects: null
   }
   pages.push(new_page)
   useFetch("/api/page", {
@@ -189,7 +190,11 @@ onMounted(() => {
                 <Button label="Upload image" @click="uploadImage(data, field)"/>
               </template>
             </Column>
-            <Column field="effects" header="Effects"></Column>
+            <Column field="effects" header="Effects">
+              <template #editor="{ data, field }">
+                <Dropdown v-model="data[field]" :options="effects" placeholder="Select the page effect..." showClear />
+              </template>
+            </Column>
             <Column :rowEditor="true" v-if="editingRows.length == 0"></Column>
             <Column>
               <template #body="slotProps">    
