@@ -1,4 +1,5 @@
 <script setup>
+import VanillaTilt from 'vanilla-tilt';
 let messages = ["Message 1", "Message 2", "Message 3"]
 </script>
 
@@ -15,7 +16,7 @@ let messages = ["Message 1", "Message 2", "Message 3"]
     <div>
       <!-- Need to connect to database -->
       <div class="flex flex-column align-items-center justify-content-around">
-        <Skeleton v-for="message in messages" width="50%" height="15rem" class="m-5"/>
+        <Skeleton v-for="message in messages" width="50%" height="15rem" class="m-5" data-tilt/>
       </div>
     </div>
   </div>
