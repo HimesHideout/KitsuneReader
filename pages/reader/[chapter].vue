@@ -19,15 +19,21 @@ const EffectSunTornado = resolveComponent('EffectSunTornado')
 const EffectClouds = resolveComponent("EffectClouds")
 
 const splide = ref()
+const settings_panel = ref()
 const page_id = ref(0)
 const visible_sidebar = ref(false)
 const fullscreen = ref(false)
+const settings = ref({
+  effectsEnabled: true,
+  direction: false
+})
 const splide_options = ref({
   perPage: 1, 
   gap: '100%',
   pagination: false,
   keyboard: "global",
-  arrows: true
+  arrows: true,
+  direction: "ltr"
 })
 const zoom_scale = 1.5
 const route = useRoute()
@@ -104,6 +110,15 @@ function onSlideMoved(splide, newIndex, prevIndex, destIndex) {
   currentEffect.value = currentPage.effects
 }
 
+function changeDirection(value) {
+  splide_options.value.direction = value ? "rtl" : "ltr"
+  localStorage.setItem("direction", value ? "rtl" : "ltr")
+}
+
+function toggleEffects(value) {
+  localStorage.setItem("effects-enabled", value)
+}
+
 function navigateToPage(n) {
   splide.value.splide.go(n - 1)
 }
@@ -114,6 +129,12 @@ onMounted(() => {
     arrow.classList.add("hidden")
     arrow.classList.add("sm:block")
   }
+  const effectsEnabled = localStorage.getItem("effects-enabled") ?? true
+  const direction = localStorage.getItem("direction") ?? "ltr"
+  settings.value.effectsEnabled = effectsEnabled == true
+  settings.value.direction = direction == "rtl"
+  console.log(direction)
+  splide_options.value.direction = direction
 })
 </script>
 
@@ -128,12 +149,26 @@ onMounted(() => {
           </NuxtLink>
         </AccordionTab>
       </Accordion>
+      <OverlayPanel ref="settings_panel">
+        <div class="flex flex-column justify-content-between">
+          <h4 class="my-2">Settings</h4>
+          <div class="flex justify-content-around align-items-center">
+            <label class="m-2">Enable effects</label>
+            <InputSwitch class="m-2" v-model="settings['effectsEnabled']" @input="toggleEffects"/>
+          </div>
+          <div class="flex justify-content-around align-items-center">
+            <label class="my-2 mx-4">Right-to-Left</label>
+            <InputSwitch class="my-2 mx-4" v-model="settings['direction']" @input="changeDirection"/>
+          </div>
+        </div>
+      </OverlayPanel>
+      <Button icon="pi pi-cog" text rounded @click="(event) => settings_panel.toggle(event)"/>
     </Sidebar>
     <NuxtLink to="/chapters" class="absolute" id="link-back">
       <Button icon="pi pi-angle-left" class="forefront" text></Button>
     </NuxtLink>
     <Button icon="pi pi-bars" @click="visible_sidebar = true" id="sidebar-button" class="absolute forefront" text></Button>
-    <Transition>
+    <Transition v-if="settings['effectsEnabled']">
       <component :is="currentEffectComponent"/>
     </Transition>
     <Splide ref="splide" 
@@ -142,7 +177,7 @@ onMounted(() => {
     @splide:moved="onSlideMoved"
     :extensions="{'url-hash': URLHash}"
     class="h-screen">
-      <SplideSlide v-for="page in pages" class="flex justify-content-center" :data-splide-hash="page.page_number">
+      <SplideSlide v-for="page in pages" class="flex justify-content-center" :class="{'mr-0': settings['direction']}" :data-splide-hash="page.page_number">
         <nuxt-img :src="page.image" sizes="100vw sm:100vw md:80vw lg:60vw xl:35vw" class="cursor-pointer" placeholder/>
       </SplideSlide>
     </Splide>
@@ -158,6 +193,7 @@ onMounted(() => {
   .forefront {
     z-index: 1;
   }
+
   #sidebar-button {
     top: 0px;
     right: 0px;

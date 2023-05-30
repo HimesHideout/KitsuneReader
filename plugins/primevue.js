@@ -9,7 +9,9 @@ import DataTable from 'primevue/datatable'
 import DataView from 'primevue/dataview'
 import Dropdown from 'primevue/dropdown'
 import InputNumber from 'primevue/inputnumber'
+import InputSwitch from 'primevue/inputswitch'
 import InputText from 'primevue/inputtext'
+import OverlayPanel from 'primevue/overlaypanel'
 import Row from 'primevue/row'
 import Sidebar from 'primevue/sidebar'
 import Skeleton from 'primevue/skeleton'
@@ -28,7 +30,9 @@ export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.component("DataView", DataView)
     nuxtApp.vueApp.component("Dropdown", Dropdown)
     nuxtApp.vueApp.component("InputNumber", InputNumber)
+    nuxtApp.vueApp.component("InputSwitch", InputSwitch)
     nuxtApp.vueApp.component("InputText", InputText)
+    nuxtApp.vueApp.component("OverlayPanel", OverlayPanel)
     nuxtApp.vueApp.component("Row", Row)
     nuxtApp.vueApp.component("Sidebar", Sidebar)
     nuxtApp.vueApp.component("Skeleton", Skeleton)
