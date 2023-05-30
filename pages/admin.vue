@@ -141,7 +141,7 @@ onMounted(() => {
 <template>
   <div>
     <header>
-      <NuxtLink to="/cover" id="link-back-chapters" class="absolute mt-3 ml-3">
+      <NuxtLink to="/" id="link-back-chapters" class="absolute mt-3 ml-3">
           <Button label="Sign out" @click="signOut({callbackUrl: '/'})" class="forefront" />
       </NuxtLink>
       <div class="flex align-items-center justify-content-around">

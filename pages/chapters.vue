@@ -6,7 +6,7 @@ let {data: chapters} = await useFetch("/api/chapters")
 <template>
   <div>
     <header>
-        <NuxtLink to="/cover" id="link-back-chapters" class="absolute">
+        <NuxtLink to="/" id="link-back-chapters" class="absolute">
             <Button icon="pi pi-angle-left" class="forefront" text></Button>
         </NuxtLink>
         <div class="flex align-items-center justify-content-around">
