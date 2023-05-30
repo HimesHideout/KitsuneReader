@@ -13,7 +13,10 @@ import VanillaTilt from "vanilla-tilt";
           <p>A Collaborative Manga Project, put together by the talented writers and artists in Hime's Hideout</p>
           </template>
         <template #content>
-          <NuxtLink to="/cover"><Button label="Manga" /></NuxtLink>
+          <div class="flex justify-content-around">
+            <NuxtLink to="/reader/1" class=""><Button label="Start Reading" /></NuxtLink>
+            <NuxtLink to="/chapters" class=""><Button label="Chapter Select" /></NuxtLink>
+          </div>
         </template>
       </Card>
       <Card class="w-5 mb-8">
@@ -21,7 +24,9 @@ import VanillaTilt from "vanilla-tilt";
           <p>Birthday messages from the kits in the community!</p>
         </template>
         <template #content>
-          <NuxtLink to="/messages"><Button label="Birthday Messages" /></NuxtLink>
+          <div class="flex justify-content-center">
+            <NuxtLink to="/messages"><Button label="Go" /></NuxtLink>
+          </div>
         </template>
       </Card>
     </div>
