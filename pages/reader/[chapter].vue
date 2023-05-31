@@ -101,7 +101,9 @@ function onSlideClick(splide, slide, e) {
     fullscreen.value = !fullscreen.value
     document.getElementById("link-back").classList.toggle("hidden")
     document.getElementById("sidebar-button").classList.toggle("hidden")
-    splide_options.value.arrows = !fullscreen.value
+    if (window.innerWidth >= 576) {
+      splide_options.value.arrows = !fullscreen.value
+    }
   }
 }
 
