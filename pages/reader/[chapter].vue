@@ -165,9 +165,9 @@ onMounted(() => {
       <Button icon="pi pi-cog" text rounded @click="(event) => settings_panel.toggle(event)"/>
     </Sidebar>
     <NuxtLink to="/chapters" class="absolute" id="link-back">
-      <Button icon="pi pi-angle-left" class="forefront" text></Button>
+      <Button icon="pi pi-angle-left" class="forefront h-3rem w-3rem" text></Button>
     </NuxtLink>
-    <Button icon="pi pi-bars" @click="visible_sidebar = true" id="sidebar-button" class="absolute forefront" text></Button>
+    <Button icon="pi pi-bars" @click="visible_sidebar = true" id="sidebar-button" class="absolute forefront h-3rem w-3rem" text></Button>
     <Transition v-if="settings['effectsEnabled']">
       <component :is="currentEffectComponent"/>
     </Transition>
