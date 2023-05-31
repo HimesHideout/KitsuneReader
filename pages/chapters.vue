@@ -22,7 +22,7 @@ let {data: chapters} = await useFetch("/api/chapters")
                 <nuxt-img :src="slotProps.data.cover" placeholder/>
               </template>
               <template #title>
-                {{ slotProps.data.type }} {{ slotProps.data.type_number }}
+                {{ slotProps.data.type }} {{ slotProps.data.type == "Chapter" ? slotProps.data.type_number : "" }}
               </template>
               <template #content>
                 <h3>{{ slotProps.data.title }}</h3>
