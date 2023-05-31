@@ -15,7 +15,7 @@
         </template>
         <template #footer>
           <div class="flex justify-content-around">
-            <NuxtLink to="/reader/1" class=""><Button label="Start Reading" id="ReadingButton"/></NuxtLink>
+            <NuxtLink to="/reader/0" class=""><Button label="Start Reading" id="ReadingButton"/></NuxtLink>
             <NuxtLink to="/chapters" class=""><Button label="Chapter Select" id="ChaptersButton"/></NuxtLink>
           </div>
         </template>
