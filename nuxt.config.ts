@@ -10,12 +10,11 @@ export default defineNuxtConfig({
     },
     css: [
         "normalize.css/normalize.css",
-        //"primevue/resources/themes/vela-orange/theme.css",
         "@/assets/css/theme.css",
         "primevue/resources/primevue.css",
         "primeicons/primeicons.css",
         "primeflex/primeflex.css",
-        "@splidejs/splide/css/sea-green",
+        "@/assets/css/splide.css",
         "@/assets/css/main.css"
     ],
     image: {

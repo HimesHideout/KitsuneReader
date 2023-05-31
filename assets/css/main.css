@@ -12,6 +12,10 @@ body {
   color: var(--text-color);
 }
 
+h2 {
+  font-size: 2em;
+}
+
 .splide {
   padding: 0;
 }
