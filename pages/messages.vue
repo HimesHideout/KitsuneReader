@@ -26,8 +26,8 @@ let {data: messages} = await useFetch("/api/messages")
       format="png"
       loading="lazy"
       data-tilt 
-      data-tilt-max="15" 
-      data-tilt-scale="1.2" />
+      data-tilt-max="2" 
+      data-tilt-scale="1.15" />
       </div>
     </div>
   </div>
