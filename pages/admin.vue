@@ -27,11 +27,11 @@ function onRowReorder(event, isPage=false) {
     }
     updateChapters()
   } else {
-    chapters.value[event.value[0].chapter_number - 1].pages = event.value
-    for (let i = 0; i < chapters.value[event.value[0].chapter_number - 1].pages.length; i++) {
-      chapters.value[event.value[0].chapter_number - 1].pages[i].page_number = i + 1
+    chapters.value[event.value[0].chapter_number].pages = event.value
+    for (let i = 0; i < chapters.value[event.value[0].chapter_number].pages.length; i++) {
+      chapters.value[event.value[0].chapter_number].pages[i].page_number = i + 1
     }
-    updatePages(event.value[0].chapter_number, chapters.value[event.value[0].chapter_number - 1].pages)
+    updatePages(event.value[0].chapter_number, chapters.value[event.value[0].chapter_number].pages)
   }
 }
 
@@ -69,9 +69,9 @@ function addPage(pages, chapter_number) {
 }
 
 async function removePage(page, index) {
-  chapters.value[page.chapter_number - 1].pages.splice(index, 1)
-  for (let i = 0; i < chapters.value[page.chapter_number - 1].pages.length; i++) {
-    chapters.value[page.chapter_number - 1].pages[i].page_number = i + 1
+  chapters.value[page.chapter_number].pages.splice(index, 1)
+  for (let i = 0; i < chapters.value[page.chapter_number].pages.length; i++) {
+    chapters.value[page.chapter_number].pages[i].page_number = i + 1
   }
   await useFetch(`/api/page/${page.page_number}`, {
     method: "DELETE",
