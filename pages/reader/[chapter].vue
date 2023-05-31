@@ -178,7 +178,13 @@ onMounted(() => {
     :extensions="{'url-hash': URLHash}"
     class="h-screen">
       <SplideSlide v-for="page in pages" class="flex justify-content-center" :class="{'mr-0': settings['direction']}" :data-splide-hash="page.page_number">
-        <nuxt-img :src="page.image" sizes="100vw sm:100vw md:80vw lg:60vw xl:35vw" class="cursor-pointer" placeholder/>
+        <nuxt-img 
+        :src="page.image" 
+        
+        class="cursor-pointer w-screen sm:w-9 md:w-7 lg:w-6 xl:w-4"
+        quality="100"
+        format="png" 
+        />
       </SplideSlide>
     </Splide>
   </div>

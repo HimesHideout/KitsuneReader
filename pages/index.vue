@@ -1,6 +1,4 @@
-<script setup>
-import VanillaTilt from "vanilla-tilt";
-</script>
+<script setup></script>
 
 <template>
   <div class="h-screen">
