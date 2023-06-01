@@ -11,12 +11,12 @@
           <img src="~/assets/logos/Zero_Cards_Over_Logo.png" style="display: block; margin-top: 2em; margin-left: auto; margin-right: auto; max-width: 55%; max-height: 60%; "/>
         </template>
         <template #title>
-          <p>A Collaborative Manga Project, put together by the talented writers and artists in Hime's Hideout</p>
+          <p class="lg:text-3xl text-2xl text-center">A Collaborative Manga Project, put together by the talented writers and artists in Hime's Hideout</p>
         </template>
-        <template #footer>
-          <div class="flex flex-wrap justify-content-around gap-2 align-content-end">
-            <NuxtLink to="/reader/0" class=""><Button label="Start Reading" id="ReadingButton"/></NuxtLink>
-            <NuxtLink to="/chapters" class=""><Button label="Chapter Select" id="ChaptersButton"/></NuxtLink>
+        <template #content>
+          <div class="flex flex-wrap justify-content-around gap-3 align-content-center">
+            <NuxtLink to="/reader/0" class=""><Button label="Start Reading" class="text-xl p-3 no-underline" id="ReadingButton"/></NuxtLink>
+            <NuxtLink to="/chapters" class=""><Button label="Chapter Select" class="text-xl p-3 no-underline" id="ChaptersButton"/></NuxtLink>
           </div>
         </template>
       </Card>
@@ -25,9 +25,9 @@
           <img src="~/assets/logos/Superchat_Logo.png" style="display: block; margin-top: 2em; margin-left: auto; margin-right: auto; max-width: 80%; max-height: 70%; "/>
         </template>
         <template #title>
-          <p>Birthday messages from the kits in the community!</p>
+          <p class="text-3xl text-center no-underline">Birthday messages from the kits in the community!</p>
         </template>
-        <template #footer>
+        <template #content>
           <div class="flex justify-content-center">
             <NuxtLink to="/messages"><Button label="Go" id="MessagesButton"/></NuxtLink>
           </div>
@@ -51,18 +51,12 @@
   min-width: 20em;
 }
 
-p {
-  font-size: 1.2em;
-  text-align: center;
-}
 
 #ReadingButton{
   background-color: #fa8943;
   color: #e2e2e2;
   border-color: #fa8943;
   border-radius: 2em;
-  font-size: 1.3em;
-  padding: 0.7em;
 }
 
 #ChaptersButton{
@@ -70,8 +64,6 @@ p {
   color: #e2e2e2;
   border-color: #fa8943;
   border-radius: 2em;
-  font-size: 1.3em;
-  padding: 0.7em;
 }
 
 #MessagesButton {
