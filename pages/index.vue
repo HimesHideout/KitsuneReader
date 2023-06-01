@@ -14,7 +14,7 @@
           <p>A Collaborative Manga Project, put together by the talented writers and artists in Hime's Hideout</p>
         </template>
         <template #footer>
-          <div class="flex justify-content-around">
+          <div class="flex flex-wrap justify-content-around gap-2 align-content-end">
             <NuxtLink to="/reader/0" class=""><Button label="Start Reading" id="ReadingButton"/></NuxtLink>
             <NuxtLink to="/chapters" class=""><Button label="Chapter Select" id="ChaptersButton"/></NuxtLink>
           </div>

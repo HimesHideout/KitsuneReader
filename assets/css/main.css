@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Cera Round Pro';
-  src: url("@/assets/fonts/CeraRoundProRegular.woff") format("woff");
+  src: url("@/assets/fonts/CeraRoundProBold.otf") ;
 }
 
 :root {

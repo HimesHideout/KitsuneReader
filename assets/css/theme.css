@@ -9,7 +9,7 @@
   --text-color-secondary: #e2e2e2;
   --primary-color: #e2e2e2;
   --primary-color-text: #2a2c40;
-  --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  --font-family: inherit;
   --surface-0: #20262e;
   --surface-50: #363c43;
   --surface-100: #4d5158;
@@ -52,7 +52,7 @@
 }
 
 .p-component {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: inherit;
   font-size: 1rem;
   font-weight: normal
 }
@@ -86,7 +86,7 @@
 
 .p-link {
   font-size: 1rem;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: inherit;
   border-radius: 3px
 }
 
@@ -276,7 +276,7 @@
 }
 
 .p-autocomplete .p-autocomplete-multiple-container .p-autocomplete-input-token input {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: inherit;
   font-size: 1rem;
   color: #e2e2e2;
   padding: 0;
@@ -826,7 +826,7 @@
 }
 
 .p-chips .p-chips-multiple-container .p-chips-input-token input {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: inherit;
   font-size: 1rem;
   color: #e2e2e2;
   padding: 0;
@@ -1255,7 +1255,7 @@
 }
 
 .p-inputtext {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: inherit;
   font-size: 1rem;
   color: #e2e2e2;
   background: #2a2c40;
@@ -7254,11 +7254,11 @@
 
 .p-terminal .p-terminal-input {
   font-size: 1rem;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+  font-family: inherit;
 }
 
 .p-breadcrumb .p-breadcrumb-chevron {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+  font-family: inherit;
 }
 
 .p-breadcrumb .p-breadcrumb-chevron:before {
