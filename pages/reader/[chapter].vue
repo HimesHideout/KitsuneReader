@@ -23,6 +23,7 @@ const splide = ref()
 const settings_panel = ref()
 const panzoom_instance = ref(null)
 const exit_fullscreen = ref(true)
+const mobile_click = ref()
 const page_id = ref(0)
 const visible_sidebar = ref(false)
 const fullscreen = ref(false)
@@ -113,6 +114,8 @@ function onSlideClick(splide, slide, e) {
     document.getElementById("sidebar-button").classList.toggle("hidden")
     if (window.innerWidth >= 576) {
       splide_options.value.arrows = !fullscreen.value
+    } else {
+      splide_options.value.arrows = false
     }
     //This starts the panzoom code
     if (fullscreen.value) {
@@ -122,8 +125,13 @@ function onSlideClick(splide, slide, e) {
         boundsPadding: 0.4,
         minZoom: 0.5,
         maxZoom: 3,
+        initialZoom: 1.50
       })
-      panzoom_instance.value.on('panend', e => exit_fullscreen.value = false)
+      const coordinates = slide.slide.getElementsByClassName("cursor-pointer")[0].getBoundingClientRect()
+      panzoom_instance.value.moveTo(-((e.clientX) - (coordinates.width / 2)), -((e.clientY) - (coordinates.height / 2)))
+      panzoom_instance.value.on("panstart", e => exit_fullscreen.value = false)
+      mobile_click.value = (e) => {onSlideClick(splide, slide, e);}
+      slide.slide.addEventListener("touchend", mobile_click.value)
       splide_options.value.drag = false
       exit_fullscreen.value = true
     } else {
@@ -135,9 +143,13 @@ function onSlideClick(splide, slide, e) {
         minZoom: 0.5,
         maxZoom: 3,
       })
+      panzoom_instance.value.zoomTo(0, 0, 1/panzoom_instance.value.getTransform().scale)
+      const x = panzoom_instance.value.getTransform().x
+      const y = panzoom_instance.value.getTransform().y
       panzoom_instance.value.smoothMoveTo(0, 0)
       panzoom_instance.value.dispose()
       panzoom_instance.value = null
+      slide.slide.removeEventListener("touchend", mobile_click.value)
       splide_options.value.drag = true
       exit_fullscreen.value = false
     }
