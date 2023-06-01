@@ -96,6 +96,10 @@ function init() {
 init()
 
 function onSlideClick(splide, slide, e) {  
+  console.log(slide)
+  if (slide.index == pages.length) {
+    return
+  }
   if (fullscreen.value && !exit_fullscreen.value) {
     exit_fullscreen.value = true
     return
@@ -235,6 +239,12 @@ onMounted(() => {
         quality="100"
         format="png" 
         />
+      </SplideSlide>
+      <SplideSlide v-if="route.params.chapter < (chapters.length - 1)" class="flex justify-content-center" :class="{'mr-0': settings['direction']}">
+          <NuxtLink :to="'/reader/' + (parseInt(route.params.chapter) + 1) + '#1'" class="flex flex-column justify-content-center align-items-center w-screen sm:w-9 md:w-7 lg:w-6 xl:w-4">
+            <h3>Go to next chapter</h3>
+            <Button icon="pi pi-angle-right" text />
+          </NuxtLink>
       </SplideSlide>
     </Splide>
   </div>
