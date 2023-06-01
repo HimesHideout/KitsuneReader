@@ -1,6 +1,7 @@
 <script setup>
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import { URLHash } from "@splidejs/splide-extension-url-hash"
+import panzoom from "panzoom"
 
 //I don't want to hardcode the effects but Nuxt doesn't like
 //dynamic components so it's either this or a 
@@ -20,6 +21,8 @@ const EffectClouds = resolveComponent("EffectClouds")
 
 const splide = ref()
 const settings_panel = ref()
+const panzoom_instance = ref(null)
+const exit_fullscreen = ref(true)
 const page_id = ref(0)
 const visible_sidebar = ref(false)
 const fullscreen = ref(false)
@@ -33,7 +36,8 @@ const splide_options = ref({
   pagination: false,
   keyboard: "global",
   arrows: true,
-  direction: "ltr"
+  direction: "ltr",
+  drag: "true"
 })
 const zoom_scale = 1.5
 const route = useRoute()
@@ -90,12 +94,18 @@ function init() {
 
 init()
 
-function onSlideClick(splide, slide, e) {
+function onSlideClick(splide, slide, e) {  
+  if (fullscreen.value && !exit_fullscreen.value) {
+    exit_fullscreen.value = true
+    return
+  }
+  
   let left_touch = e.clientX < window.innerWidth / 3
   let right_touch = e.clientX > (window.innerWidth / 3) * 2
-  if (left_touch) {
+  
+  if (left_touch && !fullscreen.value) {
     splide.go('<')
-  } else if (right_touch) {
+  } else if (right_touch && !fullscreen.value) {
     splide.go('>')
   } else {
     fullscreen.value = !fullscreen.value
@@ -103,6 +113,33 @@ function onSlideClick(splide, slide, e) {
     document.getElementById("sidebar-button").classList.toggle("hidden")
     if (window.innerWidth >= 576) {
       splide_options.value.arrows = !fullscreen.value
+    }
+    //This starts the panzoom code
+    if (fullscreen.value) {
+      panzoom_instance.value = panzoom(slide.slide, {
+        transformOrigin: {x: 0.5, y: 0.5},
+        bounds: true,
+        boundsPadding: 0.4,
+        minZoom: 0.5,
+        maxZoom: 3,
+      })
+      panzoom_instance.value.on('panend', e => exit_fullscreen.value = false)
+      splide_options.value.drag = false
+      exit_fullscreen.value = true
+    } else {
+      panzoom_instance.value.dispose()
+      panzoom_instance.value = panzoom(slide.slide, {
+        transformOrigin: {x: 0.5, y: 0.5},
+        bounds: true,
+        boundsPadding: 0.4,
+        minZoom: 0.5,
+        maxZoom: 3,
+      })
+      panzoom_instance.value.smoothMoveTo(0, 0)
+      panzoom_instance.value.dispose()
+      panzoom_instance.value = null
+      splide_options.value.drag = true
+      exit_fullscreen.value = false
     }
   }
 }
@@ -135,7 +172,6 @@ onMounted(() => {
   const direction = localStorage.getItem("direction") ?? "ltr"
   settings.value.effectsEnabled = effectsEnabled == true
   settings.value.direction = direction == "rtl"
-  console.log(direction)
   splide_options.value.direction = direction
 })
 </script>
