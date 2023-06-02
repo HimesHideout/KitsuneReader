@@ -108,14 +108,14 @@ function onSlideClick(splide, slide, e) {
   
   if (left_touch && !fullscreen.value) {
     splide.go('<')
-    if (slide.index == 0) {
-      navigateTo('/reader/' + (parseInt(route.params.chapter) - 1) + '#1')
-    }
+    // if (slide.index == 0) {
+    //   navigateTo('/reader/' + (parseInt(route.params.chapter) - 1) + '/#1')
+    // }
   } else if (right_touch && !fullscreen.value) {
     splide.go('>')
-    if (slide.index == pages.length - 1) {
-      navigateTo('/reader/' + (parseInt(route.params.chapter) + 1) + '#1')
-    }
+    // if (slide.index == pages.length - 1) {
+    //   navigateTo('/reader/' + (parseInt(route.params.chapter) + 1) + '/#1')
+    // }
   } else {
     fullscreen.value = !fullscreen.value
     if (route.params.chapter != 0) {
@@ -244,7 +244,7 @@ onMounted(() => {
       <h2>Chapters</h2>
       <Accordion :activeIndex="parseInt(route.params.chapter)">
         <AccordionTab v-for="chapter in chapters" :header="chapter.type + (chapter.type == 'Chapter' ? ` ${chapter.type_number}` : '') + ': ' + chapter.title">
-          <NuxtLink :to="'/reader/' + chapter.chapter_number + '/#' + n" v-for="n in chapter.pages_count">
+          <NuxtLink :to="'/reader/' + chapter.chapter_number + '/#' + n" :external="true" v-for="n in chapter.pages_count">
             <Button class="m-1 border-circle" :label="n.toString()" @click="chapter.chapter_number == route.params.chapter ? navigateToPage(n) : ''"></Button>
           </NuxtLink>
         </AccordionTab>
@@ -286,12 +286,16 @@ onMounted(() => {
         format="png" 
         />
         <div v-if="(route.params.chapter < (chapters.length - 1)) && (page.page_number == pages.length)" id="next-chapter-arrow" class="flex flex-column justify-content-center align-items-center absolute z-5" ref="next_chapter_arrow">
-          <Button icon="pi pi-angle-right" size="large" text/>
-          <h5>Next chapter</h5>
+          <NuxtLink :to="'/reader/' + (parseInt(route.params.chapter)+1) + '/#' + 1" :external="true" class="no-underline text-primary">
+            <Button icon="pi pi-angle-right" size="large" text/>
+            <h3 class="text-xl">Next chapter</h3>
+          </NuxtLink>
         </div>
         <div v-if="(route.params.chapter > 0) && (page.page_number == 1)" id="prev-chapter-arrow" class="flex flex-column justify-content-center align-items-center absolute z-5" ref="prev_chapter_arrow">
-          <Button icon="pi pi-angle-left" size="large" text/>
-          <h5>Previous chapter</h5>
+          <NuxtLink :to="'/reader/' + (parseInt(route.params.chapter)-1) + '/#' + 1" :external="true" class="no-underline text-primary">
+            <Button icon="pi pi-angle-left" size="large" text/>
+            <h3 class="text-xl">Previous chapter</h3>
+          </NuxtLink>         
         </div>
       </SplideSlide>
     </Splide>
