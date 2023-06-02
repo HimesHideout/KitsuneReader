@@ -23,6 +23,8 @@ const splide = ref()
 const settings_panel = ref()
 const panzoom_instance = ref(null)
 const exit_fullscreen = ref(true)
+const next_chapter_arrow = ref()
+const prev_chapter_arrow = ref()
 const mobile_click = ref()
 const page_id = ref(0)
 const visible_sidebar = ref(false)
@@ -96,10 +98,6 @@ function init() {
 init()
 
 function onSlideClick(splide, slide, e) {  
-  console.log(slide)
-  if (slide.index == pages.length) {
-    return
-  }
   if (fullscreen.value && !exit_fullscreen.value) {
     exit_fullscreen.value = true
     return
@@ -110,10 +108,22 @@ function onSlideClick(splide, slide, e) {
   
   if (left_touch && !fullscreen.value) {
     splide.go('<')
+    if (slide.index == 0) {
+      navigateTo('/reader/' + (parseInt(route.params.chapter) - 1) + '#1')
+    }
   } else if (right_touch && !fullscreen.value) {
     splide.go('>')
+    if (slide.index == pages.length - 1) {
+      navigateTo('/reader/' + (parseInt(route.params.chapter) + 1) + '#1')
+    }
   } else {
     fullscreen.value = !fullscreen.value
+    if (route.params.chapter != 0) {
+      prev_chapter_arrow.value[0].classList.toggle("opacity-0")
+    }
+    if (route.params.chapter < (chapters.value.length - 1)) {
+      next_chapter_arrow.value[0].classList.toggle("opacity-0")
+    }
     document.getElementById("link-back").classList.toggle("hidden")
     document.getElementById("sidebar-button").classList.toggle("hidden")
     if (window.innerWidth >= 576) {
@@ -161,6 +171,26 @@ function onSlideClick(splide, slide, e) {
 }
 
 function onSlideMoved(splide, newIndex, prevIndex, destIndex) {
+  let right_arrow = document.getElementsByClassName("splide__arrow--next")[0]
+  let left_arrow = document.getElementsByClassName("splide__arrow--prev")[0]
+
+  if (newIndex == (pages.length - 1) && route.params.chapter < (chapters.value.length - 1)) {
+    right_arrow.classList.add("opacity-0")
+    right_arrow.classList.add("z-0")
+    next_chapter_arrow.value[0].classList.remove("opacity-0")
+  } else if (right_arrow.classList.contains("opacity-0")) {
+      right_arrow.classList.remove("opacity-0")
+      right_arrow.classList.remove("z-0")
+      console.log("a")
+  }
+  if (newIndex == 0 && route.params.chapter > 0) {
+    left_arrow.classList.add("opacity-0")
+    left_arrow.classList.add("z-0")
+    prev_chapter_arrow.value[0].classList.remove("opacity-0")
+  } else if (left_arrow.classList.contains("opacity-0")) {
+      left_arrow.classList.remove("opacity-0")
+      left_arrow.classList.remove("z-0")
+  }
   let currentPage = pages[newIndex]
   currentEffect.value = currentPage.effects
 }
@@ -189,6 +219,22 @@ onMounted(() => {
   settings.value.effectsEnabled = effectsEnabled == true
   settings.value.direction = direction == "rtl"
   splide_options.value.direction = direction
+  if (arrows[0] === undefined) {
+    if (route.params.chapter != 0) {
+      prev_chapter_arrow.value[0].classList.add("opacity-0")
+    }
+    if (route.params.chapter < (chapters.value.length - 1)) {
+      next_chapter_arrow.value[0].classList.add("opacity-0")
+    }
+    return
+  }
+  if (route.hash.slice(1) == (pages.length) && route.params.chapter < (chapters.value.length - 1)) {
+    arrows[1]?.classList.add("opacity-0")
+    arrows[1]?.classList.add("z-0")
+  } else if (route.hash.slice(1) == 1 && route.params.chapter > 0) {
+    arrows[0]?.classList.add("opacity-0")
+    arrows[0]?.classList.add("z-0")
+  }
 })
 </script>
 
@@ -239,12 +285,14 @@ onMounted(() => {
         quality="100"
         format="png" 
         />
-      </SplideSlide>
-      <SplideSlide v-if="route.params.chapter < (chapters.length - 1)" class="flex justify-content-center" :class="{'mr-0': settings['direction']}">
-          <NuxtLink :to="'/reader/' + (parseInt(route.params.chapter) + 1) + '#1'" class="flex flex-column justify-content-center align-items-center w-screen sm:w-9 md:w-7 lg:w-6 xl:w-4">
-            <h3>Go to next chapter</h3>
-            <Button icon="pi pi-angle-right" text />
-          </NuxtLink>
+        <div v-if="(route.params.chapter < (chapters.length - 1)) && (page.page_number == pages.length)" id="next-chapter-arrow" class="flex flex-column justify-content-center align-items-center absolute z-5" ref="next_chapter_arrow">
+          <Button icon="pi pi-angle-right" size="large" text/>
+          <h5>Next chapter</h5>
+        </div>
+        <div v-if="(route.params.chapter > 0) && (page.page_number == 1)" id="prev-chapter-arrow" class="flex flex-column justify-content-center align-items-center absolute z-5" ref="prev_chapter_arrow">
+          <Button icon="pi pi-angle-left" size="large" text/>
+          <h5>Previous chapter</h5>
+        </div>
       </SplideSlide>
     </Splide>
   </div>
@@ -256,13 +304,28 @@ onMounted(() => {
     margin: 0 auto;
     transform: scale(1.5) translate(-100px, -100px);
   }
+
   .forefront {
     z-index: 1;
+  }
+
+  .hidden-arrow {
+    z-index: 0;
   }
 
   #sidebar-button {
     top: 0px;
     right: 0px;
+  }
+
+  #next-chapter-arrow {
+    right: 6%;
+    top: 44%;
+  }
+
+  #prev-chapter-arrow {
+    left: 6%;
+    top: 44%;
   }
 
   .v-enter-active,
