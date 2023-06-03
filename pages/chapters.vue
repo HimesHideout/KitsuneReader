@@ -16,7 +16,7 @@ let {data: chapters} = await useFetch("/api/chapters")
     <div>
       <DataView :value="chapters" :data-key="'id'" layout="grid">
         <template #grid="slotProps">
-          <NuxtLink :to="'/reader/' + slotProps.data.chapter_number" class="col-6 sm:col-4 md:col-3 lg:col-2 flex p-2 border-round no-underline">
+          <NuxtLink :to="'/reader/' + slotProps.data.chapter_number +'#1'" :external="true" class="col-6 sm:col-4 md:col-3 lg:col-2 flex p-2 border-round no-underline">
             <Card>
               <template #header>
                 <nuxt-img :src="slotProps.data.cover" placeholder/>
