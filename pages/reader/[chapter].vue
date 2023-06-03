@@ -238,9 +238,8 @@ onMounted(() => {
     :extensions="{'url-hash': URLHash}"
     class="h-screen">
       <SplideSlide v-if="route.params.chapter > 0" class="flex justify-content-center" :class="{'mr-0': settings['direction']}" data-splide-hash="prev">
-          <NuxtLink :to="'/reader/' + (parseInt(route.params.chapter) - 1) + '#1'" :external="true" class="flex flex-column justify-content-center align-items-center w-screen sm:w-9 md:w-7 lg:w-6 xl:w-4 no-underline text-primary text-xl">
-            <h3>Previous Chapter</h3>
-            <Button icon="pi pi-angle-left" size="large" text />
+          <NuxtLink :to="'/reader/' + (parseInt(route.params.chapter) - 1) + '#1'" :external="true" class="flex flex-column justify-content-center align-items-center w-screen sm:w-9 md:w-7 lg:w-6 xl:w-4 no-underline text-primary text-4xl">
+            <Button label="Previous Chapter" :external="true" class="text-3xl p-3 no-underline" id="PrevButton"/>
           </NuxtLink>
       </SplideSlide>
       <SplideSlide v-for="page in pages" class="flex justify-content-center" :class="{'mr-0': settings['direction']}" :data-splide-hash="page.page_number">
@@ -253,9 +252,8 @@ onMounted(() => {
         />
       </SplideSlide>
       <SplideSlide v-if="route.params.chapter < (chapters.length - 1)" class="flex justify-content-center" :class="{'mr-0': settings['direction']}" data-splide-hash="next">
-          <NuxtLink :to="'/reader/' + (parseInt(route.params.chapter) + 1) + '#1'" :external="true" class="flex flex-column justify-content-center align-items-center w-screen sm:w-9 md:w-7 lg:w-6 xl:w-4 no-underline text-primary text-xl">
-            <h3>Next Chapter</h3>
-            <Button icon="pi pi-angle-right" size="large" text />
+          <NuxtLink :to="'/reader/' + (parseInt(route.params.chapter) + 1) + '#1'" :external="true" class="flex flex-column justify-content-center align-items-center w-screen sm:w-9 md:w-7 lg:w-6 xl:w-4 no-underline text-primary text-4xl">
+            <Button label="Next Chapter" :external="true" class="text-3xl p-3 no-underline" id="NextButton"/>
           </NuxtLink>
       </SplideSlide>
     </Splide>
@@ -286,4 +284,18 @@ onMounted(() => {
   .v-leave-to {
     opacity: 0;
   }
+
+#NextButton{
+  background-color: #e2e2e2;
+  color: #2a2c40;
+  border-color: #e2e2e2;
+  border-radius: 0.5em;
+}
+#PrevButton{
+  background-color: #e2e2e2;
+  color: #2a2c40;
+  border-color: #e2e2e2;
+  border-radius: 0.5em;
+}
+
 </style>
