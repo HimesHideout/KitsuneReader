@@ -244,12 +244,10 @@ onMounted(() => {
       </SplideSlide>
       <SplideSlide v-for="page in pages" class="flex justify-content-center" :class="{'mr-0': settings['direction']}" :data-splide-hash="page.page_number">
         <nuxt-img 
-        preload
         :src="page.image" 
         class="cursor-pointer w-screen sm:w-9 md:w-7 lg:w-6 xl:w-4"
         quality="100"
         format="png"
-        
         />
       </SplideSlide>
       <SplideSlide v-if="route.params.chapter < (chapters.length - 1)" class="flex justify-content-center" :class="{'mr-0': settings['direction']}" data-splide-hash="next">
