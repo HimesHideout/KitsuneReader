@@ -6,7 +6,7 @@
       <h2>HIME BIRTHDAY PROJECT 2023</h2>
     </div>
     <div class="flex flex-wrap align-items-center justify-content-around content mb-8">
-      <Card class="w-5 mb-8" id="MangaCard">
+      <Card class="w-5 mb-8 overflow-auto" id="MangaCard">
         <template #header>
           <img src="~/assets/logos/Zero_Cards_Over_Logo.png" style="display: block; margin-top: 2em; margin-left: auto; margin-right: auto; max-width: 55%; max-height: 60%; "/>
         </template>
@@ -15,17 +15,17 @@
         </template>
         <template #content>
           <div class="flex flex-wrap justify-content-around gap-3 align-content-center">
-            <NuxtLink to="/reader/0#1" class=""><Button label="Start Reading" :external="true" class="text-xl p-3 no-underline" id="ReadingButton"/></NuxtLink>
-            <NuxtLink to="/chapters" class=""><Button label="Chapter Select" class="text-xl p-3 no-underline" id="ChaptersButton"/></NuxtLink>
+            <NuxtLink to="/reader/0#1" class=""><Button label="Start Reading" :external="true" class="sm:text-base md:text-xl p-3 no-underline" id="ReadingButton"/></NuxtLink>
+            <NuxtLink to="/chapters" class=""><Button label="Chapter Select" class="sm:text-base md:text-xl p-3 no-underline" id="ChaptersButton"/></NuxtLink>
           </div>
         </template>
       </Card>
-      <Card class="w-5 mb-8" id="MessagesCard">
+      <Card class="w-5 mb-8 overflow-auto" id="MessagesCard">
         <template #header>
           <img src="~/assets/logos/Superchat_Logo.png" style="display: block; margin-top: 2em; margin-left: auto; margin-right: auto; max-width: 80%; max-height: 70%; "/>
         </template>
         <template #title>
-          <p class="text-3xl text-center no-underline">Birthday messages from the kits in the community!</p>
+          <p class="lg:text-3xl sm:text-2xl text-center no-underline">Birthday messages from the kits in the community!</p>
         </template>
         <template #content>
           <div class="flex justify-content-center">

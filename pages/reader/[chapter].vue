@@ -96,7 +96,6 @@ function init() {
 init()
 
 function onSlideClick(splide, slide, e) {  
-  console.log(slide)
   if (slide.index == 0 || slide.index >= pages.length) {
     return
   }
