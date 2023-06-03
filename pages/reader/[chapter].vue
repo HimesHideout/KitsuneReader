@@ -97,7 +97,7 @@ init()
 
 function onSlideClick(splide, slide, e) {  
   console.log(slide)
-  if (slide.index == pages.length) {
+  if (slide.index == 0 || slide.index >= pages.length) {
     return
   }
   if (fullscreen.value && !exit_fullscreen.value) {
@@ -162,6 +162,9 @@ function onSlideClick(splide, slide, e) {
 
 function onSlideMoved(splide, newIndex, prevIndex, destIndex) {
   let currentPage = pages[newIndex]
+  if(currentPage == undefined){
+    return;
+  }
   currentEffect.value = currentPage.effects
 }
 
@@ -175,7 +178,11 @@ function toggleEffects(value) {
 }
 
 function navigateToPage(n) {
-  splide.value.splide.go(n - 1)
+  // Only one extra navigation page for first and last chapter
+  if(route.params.chapter == 0 || route.params.chapter ==  chapters.length-1){
+    n--;
+  }
+  splide.value.splide.go(n)
 }
 
 onMounted(() => {
@@ -198,7 +205,7 @@ onMounted(() => {
       <h2>Chapters</h2>
       <Accordion :activeIndex="parseInt(route.params.chapter)">
         <AccordionTab v-for="chapter in chapters" :header="chapter.type + (chapter.type == 'Chapter' ? ` ${chapter.type_number}` : '') + ': ' + chapter.title">
-          <NuxtLink :to="'/reader/' + chapter.chapter_number + '/#' + n" v-for="n in chapter.pages_count">
+          <NuxtLink :to="'/reader/' + chapter.chapter_number + '/#' + n" :external="true" v-for="n in chapter.pages_count">
             <Button class="m-1 border-circle" :label="n.toString()" @click="chapter.chapter_number == route.params.chapter ? navigateToPage(n) : ''"></Button>
           </NuxtLink>
         </AccordionTab>
@@ -231,6 +238,12 @@ onMounted(() => {
     @splide:moved="onSlideMoved"
     :extensions="{'url-hash': URLHash}"
     class="h-screen">
+      <SplideSlide v-if="route.params.chapter > 0" class="flex justify-content-center" :class="{'mr-0': settings['direction']}" data-splide-hash="prev">
+          <NuxtLink :to="'/reader/' + (parseInt(route.params.chapter) - 1) + '#1'" :external="true" class="flex flex-column justify-content-center align-items-center w-screen sm:w-9 md:w-7 lg:w-6 xl:w-4 no-underline text-primary text-xl">
+            <h3>Previous Chapter</h3>
+            <Button icon="pi pi-angle-left" size="large" text />
+          </NuxtLink>
+      </SplideSlide>
       <SplideSlide v-for="page in pages" class="flex justify-content-center" :class="{'mr-0': settings['direction']}" :data-splide-hash="page.page_number">
         <nuxt-img 
         :src="page.image" 
@@ -240,10 +253,10 @@ onMounted(() => {
         format="png" 
         />
       </SplideSlide>
-      <SplideSlide v-if="route.params.chapter < (chapters.length - 1)" class="flex justify-content-center" :class="{'mr-0': settings['direction']}">
-          <NuxtLink :to="'/reader/' + (parseInt(route.params.chapter) + 1) + '#1'" class="flex flex-column justify-content-center align-items-center w-screen sm:w-9 md:w-7 lg:w-6 xl:w-4">
-            <h3>Go to next chapter</h3>
-            <Button icon="pi pi-angle-right" text />
+      <SplideSlide v-if="route.params.chapter < (chapters.length - 1)" class="flex justify-content-center" :class="{'mr-0': settings['direction']}" data-splide-hash="next">
+          <NuxtLink :to="'/reader/' + (parseInt(route.params.chapter) + 1) + '#1'" :external="true" class="flex flex-column justify-content-center align-items-center w-screen sm:w-9 md:w-7 lg:w-6 xl:w-4 no-underline text-primary text-xl">
+            <h3>Next Chapter</h3>
+            <Button icon="pi pi-angle-right" size="large" text />
           </NuxtLink>
       </SplideSlide>
     </Splide>

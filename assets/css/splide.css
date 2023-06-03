@@ -81,7 +81,8 @@
 }
 
 .splide__arrow:disabled {
-    opacity: .3
+    /* Hides the arrow, display: none doesn't seem to work */
+    opacity: 0;
 }
 
 .splide__arrow:focus-visible {

@@ -15,7 +15,7 @@
         </template>
         <template #content>
           <div class="flex flex-wrap justify-content-around gap-3 align-content-center">
-            <NuxtLink to="/reader/0" class=""><Button label="Start Reading" class="text-xl p-3 no-underline" id="ReadingButton"/></NuxtLink>
+            <NuxtLink to="/reader/0#1" class=""><Button label="Start Reading" :external="true" class="text-xl p-3 no-underline" id="ReadingButton"/></NuxtLink>
             <NuxtLink to="/chapters" class=""><Button label="Chapter Select" class="text-xl p-3 no-underline" id="ChaptersButton"/></NuxtLink>
           </div>
         </template>
