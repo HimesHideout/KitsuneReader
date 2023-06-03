@@ -96,7 +96,7 @@ function init() {
 init()
 
 function onSlideClick(splide, slide, e) {  
-  if (slide.index == 0 || slide.index >= pages.length) {
+  if (slide.index >= pages.length) {
     return
   }
   if (fullscreen.value && !exit_fullscreen.value) {
