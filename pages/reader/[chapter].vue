@@ -170,6 +170,7 @@ function onSlideMoved(splide, newIndex, prevIndex, destIndex) {
 function changeDirection(value) {
   splide_options.value.direction = value ? "rtl" : "ltr"
   localStorage.setItem("direction", value ? "rtl" : "ltr")
+  console.log("Direction")
 }
 
 function toggleEffects(value) {
@@ -195,6 +196,9 @@ onMounted(() => {
   settings.value.effectsEnabled = effectsEnabled == true
   settings.value.direction = direction == "rtl"
   splide_options.value.direction = direction
+  console.log("Mounted")
+  changeDirection();
+  changeDirection();
 })
 </script>
 
