@@ -177,11 +177,7 @@ function toggleEffects(value) {
 }
 
 function navigateToPage(n) {
-  // Only one extra navigation page for first and last chapter
-  if(route.params.chapter == 0 || route.params.chapter ==  chapters.length-1){
-    n--;
-  }
-  splide.value.splide.go(n)
+  splide.value.splide.go(n-1)
 }
 
 onMounted(() => {
