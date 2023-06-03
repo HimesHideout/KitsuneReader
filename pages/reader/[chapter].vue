@@ -237,11 +237,11 @@ onMounted(() => {
     @splide:moved="onSlideMoved"
     :extensions="{'url-hash': URLHash}"
     class="h-screen">
-      <SplideSlide v-if="route.params.chapter > 0" class="flex justify-content-center" :class="{'mr-0': settings['direction']}" data-splide-hash="prev">
+      <!-- <SplideSlide v-if="route.params.chapter > 0" class="flex justify-content-center" :class="{'mr-0': settings['direction']}" data-splide-hash="prev">
           <NuxtLink :to="'/reader/' + (parseInt(route.params.chapter) - 1) + '#1'" :external="true" class="flex flex-column justify-content-center align-items-center w-screen sm:w-9 md:w-7 lg:w-6 xl:w-4 no-underline text-primary text-4xl">
             <Button label="Previous Chapter" :external="true" class="text-3xl p-3 no-underline" id="PrevButton"/>
           </NuxtLink>
-      </SplideSlide>
+      </SplideSlide> -->
       <SplideSlide v-for="page in pages" class="flex justify-content-center" :class="{'mr-0': settings['direction']}" :data-splide-hash="page.page_number">
         <nuxt-img 
         :src="page.image" 
