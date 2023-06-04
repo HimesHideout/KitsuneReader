@@ -150,7 +150,7 @@ onMounted(() => {
   </header>
     <DataTable :value="chapters" editMode="row" @rowReorder="onRowReorder" v-model:expandedRows="expandedRows" v-model:editingRows="editingRows" 
     @row-edit-save="onRowEditSave" dataKey="_id" stripedRows>
-      <Column rowReorder></Column>
+      <!-- <Column rowReorder></Column> -->
       <Column expander></Column>
       <Column field="chapter_number" header="Chapter"></Column>
       <Column field="title" header="Title">
