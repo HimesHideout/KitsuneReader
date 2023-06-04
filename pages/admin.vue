@@ -148,7 +148,7 @@ onMounted(() => {
         <h2>ADMIN</h2>
       </div>
   </header>
-    <DataTable :value="chapters" editMode="row" @rowReorder="onRowReorder" v-model:expandedRows="expandedRows" v-model:editingRows="editingRows" 
+    <DataTable :value="chapters" editMode="row" v-model:expandedRows="expandedRows" v-model:editingRows="editingRows" 
     @row-edit-save="onRowEditSave" dataKey="_id" stripedRows>
       <!-- <Column rowReorder></Column> -->
       <Column expander></Column>
