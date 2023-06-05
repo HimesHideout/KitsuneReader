@@ -18,6 +18,12 @@ const EffectHexagon = resolveComponent('EffectHexagon')
 const EffectRainbow = resolveComponent('EffectRainbow')
 const EffectSunTornado = resolveComponent('EffectSunTornado')
 const EffectClouds = resolveComponent("EffectClouds")
+const EffectDarkComicRush = resolveComponent('EffectDarkComicRush')
+const EffectDarkTriangular = resolveComponent('EffectDarkTriangular')
+const EffectLightComicRush = resolveComponent('EffectLightComicRush')
+const EffectMemoryRipples = resolveComponent('EffectMemoryRipples')
+const EffectPaleGradient = resolveComponent('EffectPaleGradient')
+const EffectSpringLeaves = resolveComponent("EffectSpringLeaves")
 
 const splide = ref()
 const settings_panel = ref()
@@ -56,7 +62,13 @@ const effects = {
   "Hexagon": EffectHexagon, 
   "Rainbow": EffectRainbow, 
   "SunTornado": EffectSunTornado,
-  "Clouds": EffectClouds
+  "Clouds": EffectClouds,
+  "DarkComicRush": EffectDarkComicRush,
+  "DarkTriangular": EffectDarkTriangular,
+  "LightComicRush": EffectLightComicRush,
+  "MemoryRipples": EffectMemoryRipples,
+  "PaleGradient": EffectPaleGradient,
+  "SpringLeaves": EffectSpringLeaves
 }
 const currentEffect = ref("Normal")
 const currentEffectComponent = computed(() => effects[currentEffect.value])
