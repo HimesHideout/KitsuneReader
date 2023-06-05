@@ -186,9 +186,9 @@ onMounted(() => {
     arrow.classList.add("hidden")
     arrow.classList.add("sm:block")
   }
-  const effectsEnabled = localStorage.getItem("effects-enabled") ?? true
+  const effectsEnabled = localStorage.getItem("effects-enabled") ?? "true"
   const direction = localStorage.getItem("direction") ?? "ltr"
-  settings.value.effectsEnabled = effectsEnabled == true
+  settings.value.effectsEnabled = effectsEnabled == "true"
   settings.value.direction = direction == "rtl"
   splide_options.value.direction = direction
 })
