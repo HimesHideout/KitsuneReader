@@ -261,7 +261,7 @@ onMounted(() => {
         :src="page.image" 
         class="cursor-pointer w-screen sm:w-9 md:w-7 lg:w-6 xl:w-4"
         quality="100"
-        format="png"
+        :format="page.image.slice(page.image.lastIndexOf('.') + 1)"
         />
       </SplideSlide>
       <SplideSlide v-if="route.params.chapter < (chapters.length - 1)" class="flex justify-content-center" :class="{'mr-0': settings['direction']}" data-splide-hash="next">
