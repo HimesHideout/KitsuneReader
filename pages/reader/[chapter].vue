@@ -25,6 +25,7 @@ const EffectMemoryRipples = resolveComponent('EffectMemoryRipples')
 const EffectPaleGradient = resolveComponent('EffectPaleGradient')
 const EffectSpringLeaves = resolveComponent("EffectSpringLeaves")
 const EffectStaticSlow = resolveComponent("EffectStaticSlow")
+const EffectStarrySky = resolveComponent("EffectStarrySky")
 
 const splide = ref()
 const settings_panel = ref()
@@ -70,7 +71,8 @@ const effects = {
   "MemoryRipples": EffectMemoryRipples,
   "PaleGradient": EffectPaleGradient,
   "SpringLeaves": EffectSpringLeaves,
-  "StaticSlow": EffectStaticSlow
+  "StaticSlow": EffectStaticSlow,
+  "StarrySky": EffectStarrySky
 }
 const currentEffect = ref("Normal")
 const currentEffectComponent = computed(() => effects[currentEffect.value])
