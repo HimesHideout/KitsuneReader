@@ -24,6 +24,7 @@ const EffectLightComicRush = resolveComponent('EffectLightComicRush')
 const EffectMemoryRipples = resolveComponent('EffectMemoryRipples')
 const EffectPaleGradient = resolveComponent('EffectPaleGradient')
 const EffectSpringLeaves = resolveComponent("EffectSpringLeaves")
+const EffectStaticSlow = resolveComponent("EffectStaticSlow")
 
 const splide = ref()
 const settings_panel = ref()
@@ -68,7 +69,8 @@ const effects = {
   "LightComicRush": EffectLightComicRush,
   "MemoryRipples": EffectMemoryRipples,
   "PaleGradient": EffectPaleGradient,
-  "SpringLeaves": EffectSpringLeaves
+  "SpringLeaves": EffectSpringLeaves,
+  "StaticSlow": EffectStaticSlow
 }
 const currentEffect = ref("Normal")
 const currentEffectComponent = computed(() => effects[currentEffect.value])
