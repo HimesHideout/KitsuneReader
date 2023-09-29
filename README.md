@@ -1,5 +1,6 @@
 # Kitsune Reader
 
+This is an interactive manga reader website made for Hime's 2nd Birthday.
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
 ## Setup
