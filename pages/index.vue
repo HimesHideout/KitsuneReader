@@ -3,6 +3,25 @@
 <template>
   <div class="h-screen">
     <div class="flex align-items-center justify-content-around">
+      <h2>2 YEAR ANNIVERSARY</h2>
+    </div>
+    <div class="flex flex-wrap align-items-center justify-content-around content mb-4">
+      <Card class="w-5 mb-8 overflow-auto" id="AnniversaryCard">
+        <!--Change the logo here-->
+        <template #header>
+          <img src="~/assets/logos/Superchat_Logo.png" style="display: block; margin-top: 2em; margin-left: auto; margin-right: auto; max-width: 80%; max-height: 70%; "/>
+        </template>
+        <template #title>
+          <p class="lg:text-3xl sm:text-2xl text-center no-underline">Anniversary messages from the kits in the community!</p>
+        </template>
+        <template #content>
+          <div class="flex justify-content-center">
+            <NuxtLink to="/anniversaryMessages"><Button label="Go" id="AnniversaryButton"/></NuxtLink>
+          </div>
+        </template>
+      </Card>
+    </div>
+    <div class="flex align-items-center justify-content-around">
       <h2>HIME BIRTHDAY PROJECT 2023</h2>
     </div>
     <div class="flex flex-wrap align-items-center justify-content-around content mb-8">
@@ -78,6 +97,19 @@
   font-size:1.3em;
 }
 
+/* Change coloring for button */
+#AnniversaryButton {
+  background-color: #ff66c4;
+  color: #e2e2e2;
+  border-color: #ff66c4;
+  border-radius: 2em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-size:1.3em;
+}
+
 #MangaCard {
   background: linear-gradient(to right, #8c52ff, #00bf63);
   border-radius: 2em;
@@ -88,5 +120,10 @@
   border-radius: 2em;
 }
 
+/* Change coloring for card */
+#AnniversaryCard {
+  background: linear-gradient(to right, #004aad, #cb6ce6);
+  border-radius: 2em;
+}
 
 </style>
