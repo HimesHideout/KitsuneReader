@@ -3,6 +3,25 @@
 <template>
   <div class="h-screen">
     <div class="flex align-items-center justify-content-around">
+      <h2>2 YEAR ANNIVERSARY</h2>
+    </div>
+    <div class="flex flex-wrap align-items-center justify-content-around content mb-4">
+      <Card class="w-5 mb-8 overflow-auto" id="MessagesCard">
+        <!--Change the logo here-->
+        <template #header>
+          <img src="~/assets/logos/Superchat_Logo.png" style="display: block; margin-top: 2em; margin-left: auto; margin-right: auto; max-width: 80%; max-height: 70%; "/>
+        </template>
+        <template #title>
+          <p class="lg:text-3xl sm:text-2xl text-center no-underline">Anniversary messages from the kits in the community!</p>
+        </template>
+        <template #content>
+          <div class="flex justify-content-center">
+            <NuxtLink to="/anniversaryMessages"><Button label="Go" id="MessagesButton"/></NuxtLink>
+          </div>
+        </template>
+      </Card>
+    </div>
+    <div class="flex align-items-center justify-content-around">
       <h2>HIME BIRTHDAY PROJECT 2023</h2>
     </div>
     <div class="flex flex-wrap align-items-center justify-content-around content mb-8">
