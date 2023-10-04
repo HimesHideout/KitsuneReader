@@ -46,15 +46,4 @@ onMounted(()=>{
   </div>
 </template>
 
-<style scoped>
-.image-gallery {
-  /* Mobile first */
-  flex-direction: column;
-}
-
-@media only screen and (min-width: 768px) {
-  .image-gallery {
-    flex-direction: row;
-  }
-}
-</style>
+<style scoped></style>
