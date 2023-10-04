@@ -1,5 +1,7 @@
 <script setup>
 import VanillaTilt from 'vanilla-tilt';
+
+const getImg = useImage()
 const messageRefs = ref([]);
 let {data: messages} = await useFetch("/api/messages")
 
@@ -31,16 +33,43 @@ onMounted(()=>{
           <h2>ANNIVERSARY MESSAGES</h2>
         </div>
     </header>
-    <div class="flex flex-column md:flex-row">
+    <div class="flex flex-column md:flex-row justify-content-evenly">
       <div class="flex flex-column" v-for="n in 3">
-          <nuxt-img v-for="message in columns[n - 1]"
-          ref="messageRefs"
-          :src="`/superchats/${message['name']}`" 
-          quality="100" 
-          class="m-3 w-10 align-self-center" 
-          format="png"
-          loading="lazy"
-          />
+        <!-- Yes, we're using 2 nested image components to take advantage of
+        PrimeVue's preview feature. -->
+          <Image v-for="message in columns[n - 1]"
+              ref="messageRefs"
+              class="flex flex-column"
+              preview
+          >
+            <template #image>
+              <nuxt-img
+              :src="`/superchats/${message['name']}`" 
+              quality="100" 
+              class="my-3 w-10 align-self-center" 
+              format="png"
+              loading="lazy"
+              />
+            </template>
+            <template #preview>
+              <div class="flex flex-column">
+                <nuxt-img
+                :src="`/superchats/${message['name']}`" 
+                quality="100" 
+                class="m-5 w-10 align-self-center md:w-8 lg:w-6"
+                format="png"
+                loading="lazy"
+                @click="onPreviewImageClick"
+                />
+              </div>
+            </template>
+            <!-- This disables the buttons on the preview, because they 
+            require way more work to work with custom preview elements. -->
+            <template #refresh><span></span></template>
+            <template #undo><span></span></template>
+            <template #zoomout><span></span></template>
+            <template #zoomin><span></span></template>
+          </Image>
       </div>
     </div>
   </div>
