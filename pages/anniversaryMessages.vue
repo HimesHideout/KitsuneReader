@@ -1,8 +1,4 @@
 <script setup>
-import VanillaTilt from 'vanilla-tilt';
-
-const getImg = useImage()
-const messageRefs = ref([]);
 let {data: messages} = await useFetch("/api/messages")
 
 let columns = [[], [], []]
@@ -12,15 +8,6 @@ for (let message of messages.value) {
   columns[column].push(message)
   column = (column + 1) % 3
 }
-
-onMounted(()=>{
-  for(let reference of messageRefs.value){
-    VanillaTilt.init(reference.$el, {
-      max: 2,
-      scale: 1.15
-    });
-  }  
-})
 </script>
 
 <template>
@@ -38,7 +25,6 @@ onMounted(()=>{
         <!-- Yes, we're using 2 nested image components to take advantage of
         PrimeVue's preview feature. -->
           <Image v-for="message in columns[n - 1]"
-              ref="messageRefs"
               class="flex flex-column"
               preview
           >
@@ -46,7 +32,7 @@ onMounted(()=>{
               <nuxt-img
               :src="`/superchats/${message['name']}`" 
               quality="100" 
-              class="my-3 w-10 align-self-center" 
+              class="my-3 w-11 align-self-center" 
               format="png"
               loading="lazy"
               />
