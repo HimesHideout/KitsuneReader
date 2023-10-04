@@ -37,7 +37,7 @@ onMounted(()=>{
           ref="messageRefs"
           :src="`/superchats/${message['name']}`" 
           quality="100" 
-          class="image-item m-3 w-10 align-self-center" 
+          class="m-3 w-10 align-self-center" 
           format="png"
           loading="lazy"
           />
