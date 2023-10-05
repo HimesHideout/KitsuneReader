@@ -11,7 +11,11 @@ for (let message of messages.value) {
 </script>
 
 <template>
-  <div>
+  <div
+    class="bg-image"
+    style="background-image: url('/images/effects/Dark_Starry_Sky.svg');
+    background-size: cover"
+  >
     <header>
         <NuxtLink to="/" id="link-back-messages" class="absolute">
             <Button icon="pi pi-angle-left" class="forefront" text></Button>
@@ -20,7 +24,7 @@ for (let message of messages.value) {
           <h2>ANNIVERSARY MESSAGES</h2>
         </div>
     </header>
-    <div class="flex flex-column md:flex-row justify-content-evenly">
+    <div class="flex flex-column md:flex-row justify-content-evenly gap-3">
       <div class="flex flex-column" v-for="n in 3">
         <!-- Yes, we're using 2 nested image components to take advantage of
         PrimeVue's preview feature. -->
@@ -32,7 +36,7 @@ for (let message of messages.value) {
               <nuxt-img
               :src="`/superchats/${message['name']}`" 
               quality="100" 
-              class="my-3 w-11 align-self-center" 
+              class="my-3 w-12 align-self-center" 
               format="png"
               loading="lazy"
               />
