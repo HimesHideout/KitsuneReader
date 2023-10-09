@@ -9,5 +9,6 @@ export const useMongoDB = () => {
     const effects = db.collection("effects")
     const users = db.collection("users")
     const messages = db.collection("messages")
-    return {client, db, chapters, pages, effects, users, messages}
+    const anniversary = db.collection("anniversary")
+    return {client, db, chapters, pages, effects, users, messages, anniversary}
 }

@@ -8,6 +8,7 @@ import ColumnGroup from 'primevue/columngroup'
 import DataTable from 'primevue/datatable'
 import DataView from 'primevue/dataview'
 import Dropdown from 'primevue/dropdown'
+import Image from 'primevue/image'
 import InputNumber from 'primevue/inputnumber'
 import InputSwitch from 'primevue/inputswitch'
 import InputText from 'primevue/inputtext'
@@ -29,6 +30,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.component("DataTable", DataTable)
     nuxtApp.vueApp.component("DataView", DataView)
     nuxtApp.vueApp.component("Dropdown", Dropdown)
+    nuxtApp.vueApp.component("Image", Image)
     nuxtApp.vueApp.component("InputNumber", InputNumber)
     nuxtApp.vueApp.component("InputSwitch", InputSwitch)
     nuxtApp.vueApp.component("InputText", InputText)
