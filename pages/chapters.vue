@@ -19,7 +19,9 @@ let {data: chapters} = await useFetch("/api/chapters")
           <NuxtLink :to="'/reader/' + slotProps.data.chapter_number +'#1'" :external="true" class="col-6 sm:col-4 md:col-3 lg:col-2 flex p-2 border-round no-underline">
             <Card>
               <template #header>
-                <nuxt-img :src="slotProps.data.cover" placeholder/>
+                <nuxt-img :src="slotProps.data.cover"
+                class="w-full"
+                placeholder/>
               </template>
               <template #title>
                 {{ slotProps.data.type }} {{ slotProps.data.type == "Chapter" ? slotProps.data.type_number : "" }}
