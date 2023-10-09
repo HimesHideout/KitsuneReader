@@ -41,6 +41,8 @@
           </template>
         </Card>
         <div class="card flex-column align-items-center justify-content-center">
+          <!-- The rotate & zoom buttons on preview are hidden since 
+          they require more work to work with the custom preview elements. -->
           <Image
             preview
             :pt="{
