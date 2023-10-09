@@ -1,5 +1,5 @@
 <script setup>
-let {data: messages} = await useFetch("/api/messages")
+let {data: messages} = await useFetch("/api/anniversary")
 
 let columns = [[], [], []]
 
@@ -34,7 +34,7 @@ for (let message of messages.value) {
           >
             <template #image>
               <nuxt-img
-              :src="`/superchats/${message['name']}`" 
+              :src="`/anniversary/${message['name']}`" 
               quality="100" 
               class="my-3 w-12 align-self-center" 
               format="png"
@@ -44,7 +44,7 @@ for (let message of messages.value) {
             <template #preview>
               <div class="flex flex-column">
                 <nuxt-img
-                :src="`/superchats/${message['name']}`" 
+                :src="`/anniversary/${message['name']}`" 
                 quality="100" 
                 class="m-5 w-10 align-self-center md:w-8 lg:w-6"
                 format="png"
