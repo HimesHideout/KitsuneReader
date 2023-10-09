@@ -28,9 +28,17 @@ for (let message of messages.value) {
       <div class="flex flex-column" v-for="n in 3">
         <!-- Yes, we're using 2 nested image components to take advantage of
         PrimeVue's preview feature. -->
+        <!-- The rotate & zoom buttons on preview are hidden since 
+          they require more work to work with the custom preview elements. -->
           <Image v-for="message in columns[n - 1]"
               class="flex flex-column"
               preview
+              :pt="{
+              rotateRightButton: {class: 'hidden'},
+              rotateLeftButton: {class: 'hidden'},
+              zoomInButton: {class: 'hidden'},
+              zoomOutButton: {class: 'hidden'}
+              }"
           >
             <template #image>
               <nuxt-img
@@ -53,12 +61,6 @@ for (let message of messages.value) {
                 />
               </div>
             </template>
-            <!-- This disables the buttons on the preview, because they 
-            require way more work to work with custom preview elements. -->
-            <template #refresh><span></span></template>
-            <template #undo><span></span></template>
-            <template #zoomout><span></span></template>
-            <template #zoomin><span></span></template>
           </Image>
       </div>
     </div>

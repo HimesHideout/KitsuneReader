@@ -8,10 +8,22 @@
       </div>
       <div class="flex flex-wrap justify-content-evenly align-items-center mb-5 gap-4">
         <div class="card flex-column justify-content-center">
-          <Image src="/images/art/CyberNatasha_2nd_Anniversary.png"
-              image-class="h-27rem w-12"
-              preview
-          ></Image>
+          <Image
+            preview
+            :pt="{
+              rotateRightButton: {class: 'hidden'},
+              rotateLeftButton: {class: 'hidden'},
+              zoomInButton: {class: 'hidden'},
+              zoomOutButton: {class: 'hidden'}
+            }"
+          >
+            <template #image>
+              <img src="~/assets/art/CyberNatasha_2nd_Anniversary.png" class="h-27rem w-12"/>
+            </template>
+            <template #preview>
+              <img src="~/assets/art/CyberNatasha_2nd_Anniversary.png" class="h-screen"/>
+            </template>
+          </Image>
           <div>Art by: CyberNatasha</div>
         </div>
         <Card class="w-4 h-25rem overflow-auto" id="AnniversaryCard">
@@ -29,11 +41,24 @@
           </template>
         </Card>
         <div class="card flex-column align-items-center justify-content-center">
-          <Image src="/images/art/AlexC_2nd_Anniversary.png"
-              image-class="h-21rem w-12"
-              preview
-              
-          ></Image>
+          <!-- The rotate & zoom buttons on preview are hidden since 
+          they require more work to work with the custom preview elements. -->
+          <Image
+            preview
+            :pt="{
+              rotateRightButton: {class: 'hidden'},
+              rotateLeftButton: {class: 'hidden'},
+              zoomInButton: {class: 'hidden'},
+              zoomOutButton: {class: 'hidden'}
+            }"
+          >
+            <template #image>
+              <img src="~/assets/art/AlexC_2nd_Anniversary.png" class="h-21rem w-12"/>
+            </template>
+            <template #preview>
+              <img src="~/assets/art/AlexC_2nd_Anniversary.png" class="h-screen"/>
+            </template>
+          </Image>
           <div>Art by: Alex Chan</div>
         </div>
       </div>
