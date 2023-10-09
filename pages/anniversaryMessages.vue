@@ -14,7 +14,8 @@ for (let message of messages.value) {
   <div
     class="bg-image"
     style="background-image: url('/images/effects/Dark_Starry_Sky.svg');
-    background-size: cover"
+    background-size: cover;
+    background-attachment: fixed;"
   >
     <header>
         <NuxtLink to="/" id="link-back-messages" class="absolute">
@@ -54,7 +55,7 @@ for (let message of messages.value) {
                 <nuxt-img
                 :src="`/anniversary/${message['name']}`" 
                 quality="100" 
-                class="m-5 w-10 align-self-center md:w-8 lg:w-6"
+                class="h-full max-w-full align-self-center"
                 format="png"
                 loading="lazy"
                 @click="onPreviewImageClick"
